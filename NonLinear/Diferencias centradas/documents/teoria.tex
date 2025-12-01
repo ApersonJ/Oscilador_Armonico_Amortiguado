@@ -3,43 +3,57 @@
 \usepackage{amsmath,amssymb,graphicx}
 \usepackage{xcolor}
 \usepackage{geometry}
+\usepackage{float}
 \geometry{margin=2cm}
 
-\title{Simulación de una Partícula en una Caja 1D con Pared Móvil}
-\author{John Hernán Díaz Forero}
-\date{Octubre 2025}
+\title{Montaje Experimental de Movimiento Armónico Amortiguado}
+\author{López N., Vitola J., Velandia M., Riaño L.}
+\date{Diciembre 2025}
 
 \begin{document}
 	\maketitle
 	
-	\section{Planteamiento del problema}
-	Una partícula de masa \(m\) se mueve dentro de una caja unidimensional.
-	La pared derecha se desplaza con velocidad constante \(u\):
-	\[
-	x_R(t) = L_0 - ut
-	\]
+	\section{Montaje Experimental}
+	Soporte universal con un resorte posicionado en vertical con una masa $m$ en el extremo inferior. La masa se encuentra sumergida en un recipiente con agua, dispuesta de tal manera que no salga del mismo durante las oscilaciones.
 	
-	\section{Condiciones de frontera}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{montaje.png}
+		\caption{\centering Montaje experimental realizado.}
+		\label{1}
+	\end{figure}
+	
+	Al fondo se dispone de una regla que sirve como referencia de calibración para VideoTracker, programa del cual se obtuvieron los datos para el archivo de entrada (posición y tiempo).
+	
+	\section{Condiciones Iniciales y Datos Conocidos}
 	\[
 	\begin{cases}
-		x < 0 &\Rightarrow v \to -v, \\
-		x > x_R(t) &\Rightarrow v \to -2u - v.
+		x(t)=-0.052195650(m) & \Rightarrow t=0(s) , \\
+		\frac{dx(t)}{dt}=v(t)=0(m/s) & \Rightarrow t=0(s)
 	\end{cases}
 	\]
 	
+	En cuanto a las características conocidas de los implementos tenemos que:
+	\begin{align*}
+		m &= 0.145 kg \\
+		k &= 2.9686 N/m \\
+		\lambda &= 0.1718 s^{-1}
+	\end{align*}
+	
 	\section{Solución numérica}
-	Se integra paso a paso:
-	\[
-	x_{n+1} = x_n + v_n \Delta t
-	\]
-	y se registran \(t, x, v, x_R\).
+	Se uso derivación numérica por diferencias centradas para hallar las velocidades punto a punto, y con estas se halló el momentum.
+	\begin{align*}
+		v_{i} &= \frac{x_{i+1}-x_{i-1}}{t_{i+1}-x_{i-1}} \\
+		\rho_i &= v_{i}*m
+	\end{align*}
+	
 	
 	\section{Resultados}
-	El gráfico muestra la trayectoria temporal y la animación ilustra la evolución
-	dinámica de la partícula dentro de la caja móvil.
+	El código genera un gráfico en el que se la evolución temporal de la posición, la velocidad y el momentum. Genera tambien un .dat con 4 columnas: t, x, v, $\rho$
 	
 	\section{Conclusión}
-	El modelo conserva la energía cinética salvo durante el choque con la pared
-	en movimiento, donde el marco de referencia cambia.
+	En la gráfica se observa un movimiento oscilatorio, cuya amplitud disminuye al avanzar el tiempo, indicando una disminución en la altura máxima alcanzada por la masa y un aumento en su altura mínima.
+	
+	Ligado a esto se observa que la velocidad describe un comportamiento similar, dando cuenta del frenado rápido de la masa debido al agua del recipiente. De igual forma para el momentum.
 	
 \end{document}
