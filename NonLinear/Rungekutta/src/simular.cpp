@@ -63,4 +63,6 @@ void guardarDatos(const string &archivo, double x0, double t0, double v0, double
 
     file.close();
     cout << "Datos guardados en: " << archivo << endl;
+
+    system ("gnuplot ../scripts/graficar.gp");
 }
