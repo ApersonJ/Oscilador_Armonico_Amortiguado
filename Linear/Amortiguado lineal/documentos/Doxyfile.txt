@@ -1,0 +1,374 @@
+/**
+ * @file main.cpp
+ * @brief Programa principal (main.cpp) para la simulación del oscilador armónico amortiguado lineal
+ * @author [Jesus Vitola, Nicolas Lopez, Mariana Velandia, Laura Riaño]
+ * @nov 2024
+ * @version 1.0
+ * 
+ * Este programa ejecutara una simulación completa de un oscilador armónico amortiguado
+ * utilizando el método de Runge-Kutta de 4to orden. Este generará archivos de datos,
+ * gráficas estáticas y animaciones GIF.
+ */
+
+/**
+ * @mainpage Simulador de Oscilador Armónico Amortiguado
+ * 
+ * 
+ * @section caracteristicas Características
+ * - Solución numérica de ecuaciones diferenciales
+ * - Generación de archivos de datos (.txt)
+ * - Creación de gráficas estáticas (.png)
+ * - Generación de animaciones GIF
+ * - Interfaz de usuario interactiva
+ * 
+ * @section Estructura del Proyecto
+ * - include/: Archivos fuente y encabezados
+ * - resultados/: Directorio para resultados
+ *  - listas/: Archivos de datos
+ *  - graficas/: Gráficas estáticas
+ *  - gif/: Animaciones
+ */ -Documentos/teoria 
+
+#include "../include/funciones.h"
+
+/**
+ * @brief Función principal del programa
+ * 
+ * @details
+ * Esta función es el punto de entrada del programa. Ejecuta la simulación completa del oscilador armónico amortiguado, incluyendo la generación
+ * de datos, gráficas y animaciones.
+ * 
+ * @par Flujo de ejecución:
+ * 1. Solicita parámetros al usuario
+ * 2. Realiza la simulación numérica
+ * 3. Genera archivos de datos
+ * 4. Crea gráficas estáticas
+ * 5. Opcionalmente genera animaciones GIF
+ */
+int main() {
+    ejecutarSimulacionCompleta();
+    return 0;
+}
+*
+*_____________________________SEGUNDA PARTE (FUNCION.CPP)_________________________________________
+/**
+ * @file funciones.cpp
+ * @brief Implementación de funciones para la simulación del oscilador
+
+ * Contiene las funciones principales para la simulación numérica del
+ * oscilador armónico amortiguado usando Runge-Kutta.
+ */
+
+#include "../include/funciones.h"
+#include "../include/grafica.h"    ///< Con esta librería se garantiza el uso de las funciones para graficas las listas
+#include "../include/animacion.h"  ///< De la misma forma que la anterior libreria, permite el uso de la funcion de animación
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+/**
+* @brief Esta función se encargara de calcular las derivadas correspondientes a la ecuación m d^2x/d^2t+c dx/dt+kx=0
+ * pero para la programación se implemento un sistemas de ecuaciones de primer orden a resolver, siento este: 
+ *  dxdt = v;  // dx/dt = v
+ *  dvdt = (-k/m) * x - (c/m) * v;
+ * donde: 
+ * @param x Posición actual (m)
+ * @param t Tiempo actual (s)
+ * @param v Velocidad actual (m/s)
+ * @param m Masa (kg)
+ * @param c Coeficiente de amortiguamiento (Ns/m)
+ * @param k Constante del resorte (N/m)
+ * @param dxdt Referencia para almacenar dx/dt (salida)
+ * @param dvdt Referencia para almacenar dv/dt (salida)
+ * 
+ * 
+ * 
+ * @note El amortiguamiento es lineal (proporcional a la velocidad)
+ */
+void funcion(double x, double t, double v, double m, double c, double k,
+             double &dxdt, double &dvdt) {
+    dxdt = v;
+    dvdt = (-k/m) * x - (c/m) * v;  // Amortiguamiento LINEAL
+}
+
+/**
+ * @brief Un paso del método de Runge-Kutta de 4to orden
+ * 
+ * @param[in,out] x Posición (actualizada por referencia)
+ * @param[in,out] v Velocidad (actualizada por referencia)
+ * @param[in,out] t Tiempo (actualizado por referencia)
+ * @param dt Paso de tiempo (s)
+ * @param m Masa (kg)
+ * @param c Coeficiente de amortiguamiento (Ns/m)
+ * @param k Constante del resorte (N/m)
+ * 
+ * @details
+ * Implementa el algoritmo de Runge-Kutta de 4to orden:
+ * 1. Calcula k1 = f(t, y)
+ * 2. Calcula k2 = f(t + dt/2, y + dt*k1/2)
+ * 3. Calcula k3 = f(t + dt/2, y + dt*k2/2)
+ * 4. Calcula k4 = f(t + dt, y + dt*k3)
+ * 5. Actualiza: y_{n+1} = y_n + dt*(k1 + 2*k2 + 2*k3 + k4)/6
+ * 
+ * Se siguio como base el codigo enseñado en clase. 
+void rungeKuttaStep(double &x, double &v, double &t, double dt,
+                    double m, double c, double k) {
+    double dx1, dv1, dx2, dv2, dx3, dv3, dx4, dv4;
+    
+    // Primer paso (k1)
+    funcion(x, t, v, m, c, k, dx1, dv1);
+    
+    // Segundo paso (k2)
+    funcion(x + 0.5 * dt * dx1, 
+            t + 0.5 * dt,
+            v + 0.5 * dt * dv1,
+            m, c, k, dx2, dv2);
+    
+    // Tercer paso (k3)
+    funcion(x + 0.5 * dt * dx2,
+            t + 0.5 * dt,
+            v + 0.5 * dt * dv2,
+            m, c, k, dx3, dv3);
+    
+    // Cuarto paso (k4)
+    funcion(x + dt * dx3,
+            t + dt,
+            v + dt * dv3,
+            m, c, k, dx4, dv4);
+
+    // Combinación final
+    x += dt * (dx1 + 2.0 * dx2 + 2.0 * dx3 + dx4) / 6.0;
+    v += dt * (dv1 + 2.0 * dv2 + 2.0 * dv3 + dv4) / 6.0;
+    t += dt;
+}
+
+/**
+ * @brief Solicita parámetros de simulación al usuario
+ * 
+ * @param[out] m Masa (kg)
+ * @param[out] k Constante del resorte (N/m)
+ * @param[out] c Coeficiente de amortiguamiento (Ns/m)
+ * @param[out] x0 Posición inicial (m)
+ * @param[out] v0 Velocidad inicial (m/s)
+ * @param[out] t0 Tiempo inicial (s)
+ * @param[out] tf Tiempo final (s)
+ * @param[out] dt Paso de tiempo (s)
+ * 
+ * @details
+ * Solicita y valida todos los parámetros necesarios para la simulación. Eventualmente se realiza la validación
+ * basica para asegurar congruencia y valores fisicamente validos. 
+ * 
+ * @note Valida que:
+ * - m > 0
+ * - k > 0
+ * - c >= 0
+ * - tf > t0
+ * - 0 < dt < (tf - t0)
+ */
+void solicitarParametros(double &m, double &k, double &c,
+                         double &x0, double &v0, double &t0,
+                         double &tf, double &dt) {
+    
+    cout << "INGRESE LOS PARAMETROS FISICOS:" << endl;
+    cout << "--------------------------------" << endl;
+    
+    cout << "Masa (m) [kg]: ";
+    cin >> m;
+    while (m <= 0) {
+        cout << "Error: La masa debe ser positiva. Ingrese nuevamente: ";
+        cin >> m;
+    }
+    
+    cout << "Constante del resorte (k) [N/m]: ";
+    cin >> k;
+    while (k <= 0) {
+        cout << "Error: La constante del resorte debe ser positiva. Ingrese nuevamente: ";
+        cin >> k;
+    }
+    
+    cout << "Coeficiente de amortiguamiento (c) [Ns/m]: ";
+    cin >> c;
+    while (c < 0) {
+        cout << "Error: El coeficiente no puede ser negativo. Ingrese nuevamente: ";
+        cin >> c;
+    }
+    
+    cout << "Posicion inicial (x0) [m]: ";
+    cin >> x0;
+    
+    cout << "Velocidad inicial (v0) [m/s]: ";
+    cin >> v0;
+    
+    cout << "Tiempo inicial (t0) [s]: ";
+    cin >> t0;
+    
+    cout << "Tiempo final (tf) [s]: ";
+    cin >> tf;
+    while (tf <= t0) {
+        cout << "Error: El tiempo final debe ser mayor al inicial. Ingrese nuevamente: ";
+        cin >> tf;
+    }
+    
+    cout << "Paso de tiempo (dt) [s]: ";
+    cin >> dt;
+    while (dt <= 0 || dt > (tf - t0)) {
+        cout << "Error: El paso debe ser positivo y menor que el intervalo total. Ingrese nuevamente: ";
+        cin >> dt;
+    }
+}
+
+/**
+ * @brief Ejecuta la simulación completa del oscilador
+ * 
+ * @details
+ * Esta función coordina todo el proceso de simulación:
+ * 1. Solicita parámetros al usuario
+ * 2. Realiza la integración temporal con Runge-Kutta
+ * 3. Guarda los resultados en archivos .txt
+ * 4. Genera gráficas estáticas
+ * 5. Opcionalmente crea animaciones GIF
+ * 
+ * @par Archivos generados:
+ * - resultados/listas/posicion_vs_tiempo.txt
+ * - resultados/listas/velocidad_vs_tiempo.txt
+ * - resultados/listas/momentum_vs_posicion.txt
+ * 
+ * @warning Los directorios 'resultados/listas/' y 'resultados/graficas/' deben existir
+ * 
+ * @see generarGraficas()
+ * @see generarAnimacionPosicion()
+ * @see generarGifPosicionTiempo()
+ */
+void ejecutarSimulacionCompleta() {
+    // Variables para parámetros
+    double m, k, c;           ///< Parámetros físicos
+    double x0, v0, t0, tf, dt; ///< Condiciones iniciales y temporales
+    
+    // Solicitar parámetros al usuario
+    solicitarParametros(m, k, c, x0, v0, t0, tf, dt);
+    
+    // Verificar parámetros críticos
+    if (m <= 0 || k <= 0 || c < 0 || dt <= 0) {
+        cout << "Error: Parametros invalidos. La simulacion no puede continuar." << endl;
+        return;
+    }
+    
+    // Vectores para almacenar resultados
+    vector<double> tiempos;      ///< Vector de tiempos
+    vector<double> posiciones;   ///< Vector de posiciones
+    vector<double> velocidades;  ///< Vector de velocidades
+    vector<double> momentums;    ///< Vector de momentums (p = m*v)
+    
+    // Condiciones iniciales
+    double t = t0;  ///< Tiempo actual
+    double x = x0;  ///< Posición actual
+    double v = v0;  ///< Velocidad actual
+    double p = m * v;  ///< Momentum actual
+    
+    int contador = 0;  ///< Contador de pasos para mostrar progreso
+    
+    // Integración temporal
+    while (t <= tf + dt/2.0) {  // Pequeña tolerancia para el último paso
+        // Almacenar datos
+        tiempos.push_back(t);
+        posiciones.push_back(x);
+        velocidades.push_back(v);
+        momentums.push_back(p);
+        
+        // Avanzar un paso usando Runge-Kutta
+        rungeKuttaStep(x, v, t, dt, m, c, k);
+        p = m * v;  // Actualizar momentum
+        
+        // Mostrar progreso cada 1000 pasos
+        contador++;
+        if (contador % 1000 == 0) {
+            cout << "Progreso: paso " << contador << ", t = " << t << " s" << endl;
+        }
+    }
+    
+    *En esta parte se crea un archivo tipo .txt en el cual se almacenaran los valores que tomaran 
+    *Posicion vs tiempo, Velocidad vs Tiempo, Momentum vs Posicion. Estos se presentaran en un estilo de 
+    *lista. Cada uno tendra una lista diferente.
+    *
+
+    // 1. Posición vs Tiempo
+    ofstream archivo1("../resultados/listas/posicion_vs_tiempo.txt");
+    archivo1 << "# Tiempo\tPosicion" << endl;
+    archivo1 << "# m = " << m << " kg, k = " << k << " N/m, c = " << c << " Ns/m" << endl;
+    archivo1 << "# x0 = " << x0 << " m, v0 = " << v0 << " m/s" << endl;
+    archivo1 << "# t0 = " << t0 << " s, tf = " << tf << " s, dt = " << dt << " s" << endl;
+    archivo1 << "# Sistema: Oscilador armonico amortiguado LINEAL" << endl;
+    
+    for (size_t i = 0; i < tiempos.size(); i++) {
+        archivo1 << tiempos[i] << "\t" << posiciones[i] << endl;
+    }
+    archivo1.close();
+    
+    // 2. Velocidad vs Tiempo
+    ofstream archivo2("../resultados/listas/velocidad_vs_tiempo.txt");
+    archivo2 << "# Tiempo\tVelocidad" << endl;
+    archivo2 << "# m = " << m << " kg, k = " << k << " N/m, c = " << c << " Ns/m" << endl;
+    archivo2 << "# x0 = " << x0 << " m, v0 = " << v0 << " m/s" << endl;
+    archivo2 << "# t0 = " << t0 << " s, tf = " << tf << " s, dt = " << dt << " s" << endl;
+    archivo2 << "# Sistema: Oscilador armonico amortiguado LINEAL" << endl;
+    
+    for (size_t i = 0; i < tiempos.size(); i++) {
+        archivo2 << tiempos[i] << "\t" << velocidades[i] << endl;
+    }
+    archivo2.close();
+    
+    // 3. Momentum vs Posición
+    ofstream archivo3("../resultados/listas/momentum_vs_posicion.txt");
+    archivo3 << "# Posicion\tMomentum" << endl;
+    archivo3 << "# m = " << m << " kg, k = " << k << " N/m, c = " << c << " Ns/m" << endl;
+    archivo3 << "# x0 = " << x0 << " m, v0 = " << v0 << " m/s" << endl;
+    archivo3 << "# t0 = " << t0 << " s, tf = " << tf << " s, dt = " << dt << " s" << endl;
+    archivo3 << "# Sistema: Oscilador armonico amortiguado LINEAL" << endl;
+    
+    for (size_t i = 0; i < posiciones.size(); i++) {
+        archivo3 << posiciones[i] << "\t" << momentums[i] << endl;
+    }
+    archivo3.close();
+
+    *Al finalizar la creación de los archivos lista, se mostrara en pantalla que se ha terminado la simulacion
+    *e indica la cantidad de iteraciones entre mas datos. 
+    *Se llama las funciones de " generarGraficas();" y "generarAnimacionPosicion();
+    *generarGifPosicionTiempo();", las dos ultimas se ejecutaran solo si el usuario desea que se desarrolle un gif
+    *de otra manera esta no se desarrollara.
+    *
+
+    // ===========================================
+    // Resumen de la simulación
+    // ===========================================
+    cout << endl << "===========================================" << endl;
+    cout << "          SIMULACION COMPLETADA" << endl;
+    cout << "===========================================" << endl << endl;
+    
+    cout << "Numero de puntos calculados: " << tiempos.size() << endl;
+    
+    cout << endl << "Archivos de datos generados en '../resultados/listas/':" << endl;
+    cout << "  • posicion_vs_tiempo.txt" << endl;
+    cout << "  • velocidad_vs_tiempo.txt" << endl;
+    cout << "  • momentum_vs_posicion.txt" << endl;
+    
+    // Generar gráficas después de la simulación
+    generarGraficas();
+    
+    // Generar animaciones GIF
+    cout << "\n===========================================" << endl;
+    cout << "   ¿DESEA GENERAR ANIMACIONES GIF? (s/n): ";
+    char respuesta;
+    cin >> respuesta;
+    
+    if (respuesta == 's' || respuesta == 'S') {
+        generarAnimacionPosicion();
+        generarGifPosicionTiempo();
+    }
+    
+    cout << endl << "===========================================" << endl;
+    cout << "       PROCESO COMPLETADO EXITOSAMENTE" << endl;
+    cout << "===========================================" << endl;
+}
