@@ -51,16 +51,20 @@ void guardarDatos(const string &archivo, double x0, double t0, double v0, double
 
     ofstream file(archivo);
     file << fixed << setprecision(6);
-    file << setw(10) << "t" << setw(15) << "x" << setw(15) << "v" <<endl;
+    file << setw(10) << "t" << setw(15) << "x" << setw(15) << "v" << setw(15) << "p" <<endl;
 
     double x = x0;
     double v = v0;
+    double p = m * v;
 
     for (double t = t0; t <= tmax; t += dt) {
-        file << setw(10) << t << setw(15) << x << setw(15) << v << endl;
+        file << setw(10) << t << setw(15) << x << setw(15) << v << setw(15) << p << endl;
         rungeKutta4(x, t, v, m, k ,l, dt);
+        p = m * v;
     }
 
     file.close();
     cout << "Datos guardados en: " << archivo << endl;
+
+    system ("gnuplot ../scripts/graficar.gp");
 }
