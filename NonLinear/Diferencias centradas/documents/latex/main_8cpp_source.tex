@@ -1,0 +1,63 @@
+\doxysection{main.\+cpp}
+\hypertarget{main_8cpp_source}{}\label{main_8cpp_source}\index{src/main.cpp@{src/main.cpp}}
+\mbox{\hyperlink{main_8cpp}{Ir a la documentaciÃ³n de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}../include/funciones.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00006}00006\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00008}00008\ \textcolor{comment}{//\ Definir\ un\ tamaño máximo\ para\ los\ arreglos}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00009}00009\ \textcolor{comment}{//\ Masa\ usada\ en\ el\ experimento\ (kg)}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00010}00010\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00011}00011\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00012}00012\ \textcolor{comment}{\ *\ @file\ main.cpp}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}00013\ \textcolor{comment}{\ *\ @brief\ Programa\ principal\ para\ leer\ datos\ experimentales,\ calcular\ derivadas\ y\ generar\ resultados.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}00014\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00015}00015\ \textcolor{comment}{\ *\ Este\ programa\ se\ encarga\ de:}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00016}00016\ \textcolor{comment}{\ *\ -\/\ Leer\ un\ archivo\ con\ datos\ de\ tiempo\ y\ posición.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00017}00017\ \textcolor{comment}{\ *\ -\/\ Calcular\ velocidad\ y\ momentum\ usando\ funciones\ definidas\ en\ funciones.h.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}00018\ \textcolor{comment}{\ *\ -\/\ Guardar\ los\ resultados\ de\ las\ derivadas\ en\ un\ archivo\ de\ salida.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}00019\ \textcolor{comment}{\ *\ -\/\ Graficar\ los\ datos\ obtenidos.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}\mbox{\hyperlink{main_8cpp_a755a370812a5c314712719ca48af8261}{00022}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a755a370812a5c314712719ca48af8261}{MAX\_SIZE}}\ =\ 240;\ \textcolor{comment}{///<\ Tamaño máximo\ permitido\ para\ los\ arreglos\ de\ datos.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}\mbox{\hyperlink{main_8cpp_a9990e99e87d163c58817550b21d35a83}{00023}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{main_8cpp_a9990e99e87d163c58817550b21d35a83}{m}}\ =\ 0.145;\ \ \ \ \textcolor{comment}{///<\ Masa\ utilizada\ en\ el\ experimento\ (kg).}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}00024\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00025}00025\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00026}00026\ \textcolor{comment}{\ *\ @brief\ Funcón principal\ del\ programa.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00027}00027\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00028}00028\ \textcolor{comment}{\ *\ Carga\ datos\ desde\ un\ archivo,\ calcula\ derivadas\ (velocidad\ y\ momentum),}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00029}00029\ \textcolor{comment}{\ *\ genera\ un\ archivo\ de\ salida\ con\ estos\ resultados\ y\ finalmente\ invoca\ una}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00030}00030\ \textcolor{comment}{\ *\ función para\ graficarlos.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00031}00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00032}00032\ \textcolor{comment}{\ *\ @return\ int\ 0\ si\ el\ programa\ finaliza\ correctamente.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00033}00033\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00034}\mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00034}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Nombre\ del\ archivo\ de\ entrada\ y\ salida}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{string}\ archivoEntrada\ =\ \textcolor{stringliteral}{"{}../results/listas/datos\_posicion\_tiempo.dat"{}};\ \textcolor{comment}{///<\ Ruta\ del\ archivo\ de\ entrada.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{string}\ archivoSalida\ =\ \textcolor{stringliteral}{"{}../results/listas/datos\_derivadas.dat"{}};\ \textcolor{comment}{///<\ Ruta\ del\ archivo\ de\ salida.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ Arreglos\ para\ almacenar\ datos}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{double}\ tiempo[\mbox{\hyperlink{main_8cpp_a755a370812a5c314712719ca48af8261}{MAX\_SIZE}}],\ posicion[\mbox{\hyperlink{main_8cpp_a755a370812a5c314712719ca48af8261}{MAX\_SIZE}}];}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{double}\ velocidad[\mbox{\hyperlink{main_8cpp_a755a370812a5c314712719ca48af8261}{MAX\_SIZE}}],\ momentum[\mbox{\hyperlink{main_8cpp_a755a370812a5c314712719ca48af8261}{MAX\_SIZE}}];}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ Leer\ archivo\ de\ entrada}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ \mbox{\hyperlink{simular_8cpp_a88c29054fac1e8bab0c9aff9952f1d58}{leerArchivo}}(archivoEntrada,\ tiempo,\ posicion);\ \textcolor{comment}{///<\ Cantidad\ de\ datos\ leídos.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ Calcular\ derivadas}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047\ \ \ \ \ \mbox{\hyperlink{simular_8cpp_a6c4337ab076202052bae8a26195dffb2}{calcularDerivadas}}(tiempo,\ posicion,\ velocidad,\ momentum,\ n);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ Generar\ archivo\ con\ las\ derivadas\ }}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{simular_8cpp_ab2b43e9c7194073a63eb9cfdafeead7a}{generarArchivoSalida}}(archivoSalida,\ tiempo,\ posicion,\ velocidad,\ momentum,\ n);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//\ Graficar\ datos}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{graficar_8cpp_a9d29102b39f2300d9bfb3275ef1cb1cf}{graficarDatos}}(archivoSalida);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00056}00056\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00057}00057\ }
+
+\end{DoxyCode}

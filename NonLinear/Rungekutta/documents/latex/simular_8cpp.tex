@@ -1,0 +1,127 @@
+\doxysection{Referencia del archivo src/simular.cpp}
+\hypertarget{simular_8cpp}{}\label{simular_8cpp}\index{src/simular.cpp@{src/simular.cpp}}
+
+
+Implementación de las funciones para la simulación del oscilador amortiguado.  
+
+
+{\ttfamily \#include "{}../include/funciones.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Gráfico de dependencias incluidas en simular.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{simular_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{funcion}} (double x, double t, double v, double m, double k, double l, double \&dxdt, double \&dvdt)
+\begin{DoxyCompactList}\small\item\em Calcula las derivadas del sistema de ecuaciones diferenciales. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{simular_8cpp_ae38ee23831a104f63d65512fccb97dea}{guardar\+Datos}} (const string \&archivo, double x0, double t0, double v0, double m, double k, double l, double dt, double tmax)
+\begin{DoxyCompactList}\small\item\em Ejecuta la simulación y guarda los resultados en un archivo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8}{pedir\+Datos}} (double \&x, double \&t, double \&v, double \&m, double \&k, double \&l, double \&dt)
+\begin{DoxyCompactList}\small\item\em Solicita al usuario los parámetros iniciales para la simulación. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7}{runge\+Kutta4}} (double \&x, double \&t, double \&v, double \&m, double \&k, double \&l, double dt)
+\begin{DoxyCompactList}\small\item\em Aplica un paso del método de Runge-\/\+Kutta de cuarto orden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de las funciones para la simulación del oscilador amortiguado. 
+
+Contiene las funciones necesarias para la simulación numérica de un oscilador armónico con amortiguamiento cuadrático, utilizando el método de Runge-\/\+Kutta de cuarto orden. Además, incluye funciones para la entrada de datos y el almacenamiento de resultados.
+
+\begin{DoxyAuthor}{Autor}
+\mbox{[}Jesus Vitola, Nicolas Lopez, Mariana Velandia, Laura Riaño\mbox{]} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+\mbox{[}01/12/2025\mbox{]} 
+\end{DoxyDate}
+
+
+Definición en el archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{simular_8cpp_ae38ee23831a104f63d65512fccb97dea}\label{simular_8cpp_ae38ee23831a104f63d65512fccb97dea} 
+\index{simular.cpp@{simular.cpp}!guardarDatos@{guardarDatos}}
+\index{guardarDatos@{guardarDatos}!simular.cpp@{simular.cpp}}
+\doxysubsubsection{\texorpdfstring{guardarDatos()}{guardarDatos()}}
+{\footnotesize\ttfamily void guardar\+Datos (\begin{DoxyParamCaption}\item[{const string \&}]{archivo,  }\item[{double}]{x0,  }\item[{double}]{t0,  }\item[{double}]{v0,  }\item[{double}]{m,  }\item[{double}]{k,  }\item[{double}]{l,  }\item[{double}]{dt,  }\item[{double}]{tmax }\end{DoxyParamCaption})}
+
+
+
+Ejecuta la simulación y guarda los resultados en un archivo. 
+
+Realiza la integración numérica desde t0 hasta tmax con paso dt, guardando en un archivo los valores de tiempo, posición, velocidad y momento lineal. Al finalizar, ejecuta un script de gnuplot para graficar los resultados.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em archivo} & Ruta del archivo de salida donde se guardarán los datos. \\
+\hline
+{\em x0} & Posición inicial (m). \\
+\hline
+{\em t0} & Tiempo inicial (s). \\
+\hline
+{\em v0} & Velocidad inicial (m/s). \\
+\hline
+{\em tmax} & Tiempo máximo de simulación (s). \\
+\hline
+\end{DoxyParams}
+\texorpdfstring{$<$}{<} Crea el directorio de resultados si no existe.
+
+\texorpdfstring{$<$}{<} Formato de salida\+: punto fijo con 6 decimales.
+
+\texorpdfstring{$<$}{<} Encabezado del archivo.
+
+\texorpdfstring{$<$}{<} Posición inicial.
+
+\texorpdfstring{$<$}{<} Velocidad inicial.
+
+\texorpdfstring{$<$}{<} Momento lineal inicial (p = m\texorpdfstring{$\ast$}{*}v).
+
+Bucle de integración temporal.
+
+\texorpdfstring{$<$}{<} Escribe datos en el archivo.
+
+\texorpdfstring{$<$}{<} Avanza un paso de tiempo.
+
+\texorpdfstring{$<$}{<} Actualiza el momento lineal.
+
+\texorpdfstring{$<$}{<} Cierra el archivo de salida.
+
+\texorpdfstring{$<$}{<} Ejecuta el script de gnuplot para generar gráficas.
+
+Definición en la línea \mbox{\hyperlink{simular_8cpp_source_l00102}{102}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{simular_8cpp_source_l00076}{runge\+Kutta4()}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8cpp_source_l00024}{main()}}.
+
+Gráfico de llamadas de esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{simular_8cpp_ae38ee23831a104f63d65512fccb97dea_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{simular_8cpp_ae38ee23831a104f63d65512fccb97dea_icgraph}
+\end{center}
+\end{figure}

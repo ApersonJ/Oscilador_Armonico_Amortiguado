@@ -1,0 +1,80 @@
+\doxysection{Referencia del archivo src/main.cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Punto de entrada principal para la simulación del oscilador amortiguado.  
+
+
+{\ttfamily \#include "{}../include/funciones.\+h"{}}\newline
+Gráfico de dependencias incluidas en main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Función principal del programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Punto de entrada principal para la simulación del oscilador amortiguado. 
+
+Este programa simula el comportamiento de un oscilador armónico amortiguado utilizando el método de Runge-\/\+Kutta de cuarto orden. Solicita los parámetros iniciales al usuario, ejecuta la simulación y guarda los resultados en un archivo.
+
+\begin{DoxyAuthor}{Autor}
+\mbox{[}Jesus Vitola, Nicolas Lopez, Mariana Velandia, Laura Riaño\mbox{]} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+\mbox{[}01/12/2025\mbox{]} 
+\end{DoxyDate}
+
+
+Definición en el archivo \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Función principal del programa. 
+
+Gestiona el flujo principal de la simulación\+: solicita los datos al usuario, ejecuta la simulación y guarda los resultados.
+
+\begin{DoxyReturn}{Devuelve}
+int Código de salida del programa (0 si finaliza correctamente). 
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<} Variables para posición, tiempo, velocidad, masa, constante elástica, coeficiente de amortiguamiento y paso de tiempo.
+
+\texorpdfstring{$<$}{<} Tiempo máximo de simulación (en segundos).
+
+\texorpdfstring{$<$}{<} Solicita los datos iniciales al usuario.
+
+\texorpdfstring{$<$}{<} Ejecuta la simulación y guarda los resultados.
+
+\texorpdfstring{$<$}{<} Indica que el programa finalizó correctamente.
+
+Definición en la línea \mbox{\hyperlink{main_8cpp_source_l00024}{24}} del archivo \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{simular_8cpp_source_l00102}{guardar\+Datos()}} y \mbox{\hyperlink{simular_8cpp_source_l00037}{pedir\+Datos()}}.
+
+Gráfico de llamadas de esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,131 @@
+\doxysection{simular.\+cpp}
+\hypertarget{simular_8cpp_source}{}\label{simular_8cpp_source}\index{src/simular.cpp@{src/simular.cpp}}
+\mbox{\hyperlink{simular_8cpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ simular.cpp}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Implementación\ de\ las\ funciones\ para\ la\ simulación\ del\ oscilador\ amortiguado.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00004}00004\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ Contiene\ las\ funciones\ necesarias\ para\ la\ simulación\ numérica\ de\ un\ oscilador}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00006}00006\ \textcolor{comment}{\ *\ armónico\ con\ amortiguamiento\ cuadrático,\ utilizando\ el\ método\ de\ Runge-\/Kutta}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00007}00007\ \textcolor{comment}{\ *\ de\ cuarto\ orden.\ Además,\ incluye\ funciones\ para\ la\ entrada\ de\ datos\ y\ el}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00008}00008\ \textcolor{comment}{\ *\ almacenamiento\ de\ resultados.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00009}00009\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00010}00010\ \textcolor{comment}{\ *\ @author\ [Jesus\ Vitola,\ Nicolas\ Lopez,\ Mariana\ Velandia,\ Laura\ Riaño]}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00011}00011\ \textcolor{comment}{\ *\ @date\ [01/12/2025]}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00012}00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}../include/funciones.h"{}}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00021}00021\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00022}00022\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00023}00023\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00024}00024\ \textcolor{comment}{\ *\ @brief\ Solicita\ al\ usuario\ los\ parámetros\ iniciales\ para\ la\ simulación.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00025}00025\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00026}00026\ \textcolor{comment}{\ *\ Pide\ al\ usuario\ que\ introduzca\ los\ valores\ iniciales\ de\ posición,\ tiempo,\ velocidad,}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00027}00027\ \textcolor{comment}{\ *\ masa,\ constante\ elástica,\ coeficiente\ de\ amortiguamiento\ y\ paso\ de\ integración.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00028}00028\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00029}00029\ \textcolor{comment}{\ *\ @param\ x\ Referencia\ a\ la\ posición\ inicial\ (m).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00030}00030\ \textcolor{comment}{\ *\ @param\ t\ Referencia\ al\ tiempo\ inicial\ (s).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00031}00031\ \textcolor{comment}{\ *\ @param\ v\ Referencia\ a\ la\ velocidad\ inicial\ (m/s).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00032}00032\ \textcolor{comment}{\ *\ @param\ m\ Referencia\ a\ la\ masa\ del\ oscilador\ (Kg).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00033}00033\ \textcolor{comment}{\ *\ @param\ k\ Referencia\ a\ la\ constante\ elástica\ del\ resorte\ (N/m).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00034}00034\ \textcolor{comment}{\ *\ @param\ l\ Referencia\ al\ coeficiente\ de\ amortiguamiento\ (Kg/m).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00035}00035\ \textcolor{comment}{\ *\ @param\ dt\ Referencia\ al\ paso\ de\ integración\ (s).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00036}00036\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00037}\mbox{\hyperlink{group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8}{00037}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8}{pedirDatos}}(\textcolor{keywordtype}{double}\ \&x,\ \textcolor{keywordtype}{double}\ \&t,\ \textcolor{keywordtype}{double}\ \&v,\ \textcolor{keywordtype}{double}\ \&m,\ \textcolor{keywordtype}{double}\ \&k,\ \textcolor{keywordtype}{double}\ \&l,\ \textcolor{keywordtype}{double}\ \&dt)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00038}00038\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Ingrese\ el\ valor\ inicial\ de\ x\ (m):\ "{}};}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00039}00039\ \ \ \ \ cin\ >>\ x;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00040}00040\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Ingrese\ el\ valor\ inicial\ de\ t\ (s):\ "{}};}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00041}00041\ \ \ \ \ cin\ >>\ t;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00042}00042\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Ingrese\ el\ valor\ inicial\ de\ v\ \ (m/s):\ "{}};}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00043}00043\ \ \ \ \ cin\ >>\ v;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00044}00044\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Ingrese\ el\ valor\ de\ la\ masa\ (Kg):\ "{}};}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00045}00045\ \ \ \ \ cin\ >>\ m;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00046}00046\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Ingrese\ el\ valor\ de\ k\ (N/m):\ "{}};}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00047}00047\ \ \ \ \ cin\ >>\ k;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00048}00048\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Ingrese\ el\ valor\ del\ coeficiente\ de\ amortiguamiento\ (Kg/m):\ "{}};}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00049}00049\ \ \ \ \ cin\ >>\ l;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00050}00050\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Ingrese\ el\ paso\ de\ integracion\ dt:\ "{}};}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00051}00051\ \ \ \ \ cin\ >>\ dt;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00053}00053\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00054}00054\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00055}00055\ \textcolor{comment}{\ *\ @brief\ Calcula\ las\ derivadas\ del\ sistema\ de\ ecuaciones\ diferenciales.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00056}00056\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00057}00057\ \textcolor{comment}{\ *\ Evalúa\ las\ ecuaciones\ del\ oscilador\ amortiguado:}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00058}00058\ \textcolor{comment}{\ *\ -\/\ dx/dt\ =\ v}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00059}00059\ \textcolor{comment}{\ *\ -\/\ dv/dt\ =\ -\/(k/m)*x\ -\/\ (l/m)*v*|v|}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00060}00060\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00061}00061\ \textcolor{comment}{\ *\ @param\ dxdt\ Referencia\ para\ almacenar\ la\ derivada\ de\ la\ posición\ (dx/dt).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00062}00062\ \textcolor{comment}{\ *\ @param\ dvdt\ Referencia\ para\ almacenar\ la\ derivada\ de\ la\ velocidad\ (dv/dt).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00063}00063\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00064}\mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{00064}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{funcion}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ t,\ \textcolor{keywordtype}{double}\ v,\ \textcolor{keywordtype}{double}\ m,\ \textcolor{keywordtype}{double}\ k,\ \textcolor{keywordtype}{double}\ l,\ \textcolor{keywordtype}{double}\ \&dxdt,\ \textcolor{keywordtype}{double}\ \&dvdt)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00065}00065\ \ \ \ \ dxdt\ =\ v;\ \textcolor{comment}{///<\ Derivada\ de\ la\ posición:\ velocidad.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00066}00066\ \ \ \ \ dvdt\ =\ (-\/k/m)\ *\ x\ -\/\ (l/m)\ *\ v\ *\ fabs(v);\ \textcolor{comment}{///<\ Derivada\ de\ la\ velocidad:\ aceleración\ (fuerza\ elástica\ +\ amortiguamiento\ cuadrático).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00068}00068\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00069}00069\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00070}00070\ \textcolor{comment}{\ *\ @brief\ Aplica\ un\ paso\ del\ método\ de\ Runge-\/Kutta\ de\ cuarto\ orden.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00071}00071\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00072}00072\ \textcolor{comment}{\ *\ Avanza\ la\ solución\ del\ sistema\ de\ ecuaciones\ diferenciales\ un\ paso\ de\ tiempo\ dt,}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00073}00073\ \textcolor{comment}{\ *\ actualizando\ los\ valores\ de\ posición\ (x)\ y\ velocidad\ (v).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00074}00074\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00075}00075\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00076}\mbox{\hyperlink{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7}{00076}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7}{rungeKutta4}}(\textcolor{keywordtype}{double}\ \&x,\ \textcolor{keywordtype}{double}\ \&t,\ \textcolor{keywordtype}{double}\ \&v,\ \textcolor{keywordtype}{double}\ \&m,\ \textcolor{keywordtype}{double}\ \&k,\ \textcolor{keywordtype}{double}\ \&l,\ \textcolor{keywordtype}{double}\ dt)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordtype}{double}\ dx1,\ dv1,\ dx2,\ dv2,\ dx3,\ dv3,\ dx4,\ dv4;\ \textcolor{comment}{///<\ Variables\ para\ las\ evaluaciones\ intermedias\ de\ Runge-\/Kutta.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{funcion}}(x,\ t,\ v,\ m\ ,\ k,\ l,\ dx1,\ dv1);\ \textcolor{comment}{///<\ Primera\ evaluación\ (k1).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{funcion}}(x\ +\ 0.5\ *\ dt\ *\ dx1,\ t\ +\ 0.5\ *\ dt,\ v\ +\ 0.5\ *\ dt\ *\ dv1,\ m\ ,\ k,\ l,\ dx2,\ dv2);\ \textcolor{comment}{///<\ Segunda\ evaluación\ (k2).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00081}00081\ \ \ \ \ \mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{funcion}}(x\ +\ 0.5\ *\ dt\ *\ dx2,\ t\ +\ 0.5\ *\ dt,\ v\ +\ 0.5\ *\ dt\ *\ dv2,\ m\ ,\ k,\ l,\ dx3,\ dv3);\ \textcolor{comment}{///<\ Tercera\ evaluación\ (k3).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00082}00082\ \ \ \ \ \mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{funcion}}(x\ +\ dt\ *\ dx3,\ t\ +\ dt,\ v\ +\ dt\ *\ dv3,\ m\ ,\ k,\ l,\ dx4,\ dv4);\ \textcolor{comment}{///<\ Cuarta\ evaluación\ (k4).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00083}00083\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00084}00084\ \textcolor{comment}{\ \ \ \ ///\ Actualización\ de\ x\ y\ v\ usando\ la\ combinación\ ponderada\ de\ las\ evaluaciones.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00085}00085\ \textcolor{comment}{}\ \ \ \ x\ +=\ dt\ *\ (dx1\ +\ 2\ *\ dx2\ +\ 2\ *\ dx3\ +\ dx4)\ /\ 6.0;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00086}00086\ \ \ \ \ v\ +=\ dt\ *\ (dv1\ +\ 2\ *\ dv2\ +\ 2\ *\ dv3\ +\ dv4)\ /\ 6.0;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00087}00087\ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00088}00088\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00089}00089\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00090}00090\ \textcolor{comment}{\ *\ @brief\ Ejecuta\ la\ simulación\ y\ guarda\ los\ resultados\ en\ un\ archivo.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00091}00091\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00092}00092\ \textcolor{comment}{\ *\ Realiza\ la\ integración\ numérica\ desde\ t0\ hasta\ tmax\ con\ paso\ dt,}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00093}00093\ \textcolor{comment}{\ *\ guardando\ en\ un\ archivo\ los\ valores\ de\ tiempo,\ posición,\ velocidad\ y\ momento\ lineal.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00094}00094\ \textcolor{comment}{\ *\ Al\ finalizar,\ ejecuta\ un\ script\ de\ gnuplot\ para\ graficar\ los\ resultados.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00095}00095\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00096}00096\ \textcolor{comment}{\ *\ @param\ archivo\ Ruta\ del\ archivo\ de\ salida\ donde\ se\ guardarán\ los\ datos.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00097}00097\ \textcolor{comment}{\ *\ @param\ x0\ Posición\ inicial\ (m).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00098}00098\ \textcolor{comment}{\ *\ @param\ t0\ Tiempo\ inicial\ (s).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00099}00099\ \textcolor{comment}{\ *\ @param\ v0\ Velocidad\ inicial\ (m/s).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00100}00100\ \textcolor{comment}{\ *\ @param\ tmax\ Tiempo\ máximo\ de\ simulación\ (s).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00101}00101\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00102}\mbox{\hyperlink{simular_8cpp_ae38ee23831a104f63d65512fccb97dea}{00102}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{simular_8cpp_ae38ee23831a104f63d65512fccb97dea}{guardarDatos}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&archivo,\ \textcolor{keywordtype}{double}\ x0,\ \textcolor{keywordtype}{double}\ t0,\ \textcolor{keywordtype}{double}\ v0,\ \textcolor{keywordtype}{double}\ m,\ \textcolor{keywordtype}{double}\ k,\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ l,\ \textcolor{keywordtype}{double}\ dt,\ \textcolor{keywordtype}{double}\ tmax)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00104}00104\ \ \ \ \ system(\textcolor{stringliteral}{"{}mkdir\ -\/p\ ../results"{}});\ \textcolor{comment}{///<\ Crea\ el\ directorio\ de\ resultados\ si\ no\ existe.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00106}00106\ \ \ \ \ ofstream\ file(archivo);}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00107}00107\ \ \ \ \ file\ <<\ fixed\ <<\ setprecision(6);\ \textcolor{comment}{///<\ Formato\ de\ salida:\ punto\ fijo\ con\ 6\ decimales.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00108}00108\ \ \ \ \ file\ <<\ setw(10)\ <<\ \textcolor{stringliteral}{"{}t"{}}\ <<\ setw(15)\ <<\ \textcolor{stringliteral}{"{}x"{}}\ <<\ setw(15)\ <<\ \textcolor{stringliteral}{"{}v"{}}\ <<\ setw(15)\ <<\ \textcolor{stringliteral}{"{}p"{}}\ <<endl;\ \textcolor{comment}{///<\ Encabezado\ del\ archivo.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{keywordtype}{double}\ x\ =\ x0;\ \textcolor{comment}{///<\ Posición\ inicial.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keywordtype}{double}\ v\ =\ v0;\ \textcolor{comment}{///<\ Velocidad\ inicial.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keywordtype}{double}\ p\ =\ m\ *\ v;\ \textcolor{comment}{///<\ Momento\ lineal\ inicial\ (p\ =\ m*v).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00113}00113\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00114}00114\ \textcolor{comment}{\ \ \ \ ///\ Bucle\ de\ integración\ temporal.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00115}00115\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{double}\ t\ =\ t0;\ t\ <=\ tmax;\ t\ +=\ dt)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ file\ <<\ setw(10)\ <<\ t\ <<\ setw(15)\ <<\ x\ <<\ setw(15)\ <<\ v\ <<\ setw(15)\ <<\ p\ <<\ endl;\ \textcolor{comment}{///<\ Escribe\ datos\ en\ el\ archivo.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7}{rungeKutta4}}(x,\ t,\ v,\ m,\ k\ ,l,\ dt);\ \textcolor{comment}{///<\ Avanza\ un\ paso\ de\ tiempo.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ p\ =\ m\ *\ v;\ \textcolor{comment}{///<\ Actualiza\ el\ momento\ lineal.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00119}00119\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00121}00121\ \ \ \ \ file.close();\ \textcolor{comment}{///<\ Cierra\ el\ archivo\ de\ salida.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00122}00122\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Datos\ guardados\ en:\ "{}}\ <<\ archivo\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00124}00124\ \ \ \ \ system\ (\textcolor{stringliteral}{"{}gnuplot\ ../scripts/graficar.gp"{}});\ \textcolor{comment}{///<\ Ejecuta\ el\ script\ de\ gnuplot\ para\ generar\ gráficas.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00125}00125\ \}}
+
+\end{DoxyCode}

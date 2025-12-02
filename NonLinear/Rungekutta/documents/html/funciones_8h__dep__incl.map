@@ -1,0 +1,7 @@
+<map id="include/funciones.h" name="include/funciones.h">
+<area shape="rect" id="Node000001" title="Declaraciones de funciones para la simulación del oscilador." alt="" coords="52,5,200,31"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html" title="Punto de entrada principal para la simulación del oscilador amortiguado." alt="" coords="5,79,111,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,42,71,80,67,77,104,39"/>
+<area shape="rect" id="Node000003" href="$simular_8cpp.html" title="Implementación de las funciones para la simulación del oscilador amortiguado." alt="" coords="135,79,255,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,39,186,77,182,80,145,43"/>
+</map>

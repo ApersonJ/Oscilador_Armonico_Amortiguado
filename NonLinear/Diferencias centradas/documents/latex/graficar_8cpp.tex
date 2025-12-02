@@ -1,0 +1,74 @@
+\doxysection{Referencia del archivo src/graficar.cpp}
+\hypertarget{graficar_8cpp}{}\label{graficar_8cpp}\index{src/graficar.cpp@{src/graficar.cpp}}
+{\ttfamily \#include "{}../include/funciones.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Gr√°fico de dependencias incluidas en graficar.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{graficar_8cpp_a9d29102b39f2300d9bfb3275ef1cb1cf}{graficar\+Datos}} (const string \&archivo\+Salida)
+\begin{DoxyCompactList}\small\item\em Genera gr·ficas a partir de un archivo de datos usando Gnuplot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentaci√≥n de funciones}
+\Hypertarget{graficar_8cpp_a9d29102b39f2300d9bfb3275ef1cb1cf}\label{graficar_8cpp_a9d29102b39f2300d9bfb3275ef1cb1cf} 
+\index{graficar.cpp@{graficar.cpp}!graficarDatos@{graficarDatos}}
+\index{graficarDatos@{graficarDatos}!graficar.cpp@{graficar.cpp}}
+\doxysubsubsection{\texorpdfstring{graficarDatos()}{graficarDatos()}}
+{\footnotesize\ttfamily void graficar\+Datos (\begin{DoxyParamCaption}\item[{const string \&}]{archivo\+Salida }\end{DoxyParamCaption})}
+
+
+
+Genera gr·ficas a partir de un archivo de datos usando Gnuplot. 
+
+Esta funciÛn crea dos scripts de Gnuplot\+:
+\begin{DoxyItemize}
+\item Uno para graficar posiciÛn y velocidad vs tiempo.
+\item Otro para graficar momentum vs posiciÛn.
+\end{DoxyItemize}
+
+Luego ejecuta cada script mediante una llamada al sistema.
+
+
+\begin{DoxyParams}{Par√°metros}
+{\em archivo\+Salida} & Ruta del archivo de datos que contiene columnas\+:
+\begin{DoxyItemize}
+\item Columna 1\+: Tiempo ~\newline
+
+\item Columna 2\+: PosiciÛn ~\newline
+
+\item Columna 3\+: Velocidad ~\newline
+
+\item Columna 4\+: Momentum ~\newline
+
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+Los gr·ficos generados se guardan en\+:
+\begin{DoxyItemize}
+\item {\ttfamily ../results/graficas/velocidad\+\_\+posicion\+\_\+grafica.png}
+\item {\ttfamily ../results/graficas/momentum\+\_\+grafica.png}
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Nota}
+No modifica el archivo de entrada. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Atenci√≥n}
+Requiere que Gnuplot estÈ instalado en el sistema. 
+\end{DoxyWarning}
+
+
+Definici√≥n en la l√≠nea \mbox{\hyperlink{graficar_8cpp_source_l00042}{42}} del archivo \mbox{\hyperlink{graficar_8cpp_source}{graficar.\+cpp}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8cpp_source_l00034}{main()}}.
+
+Gr√°fico de llamadas a esta funci√≥n\+:
+% FIG 1

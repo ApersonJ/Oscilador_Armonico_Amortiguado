@@ -1,0 +1,9 @@
+<map id="funcion" name="funcion">
+<area shape="rect" id="Node000001" title="Calcula las derivadas del sistema de ecuaciones diferenciales." alt="" coords="416,5,487,31"/>
+<area shape="rect" id="Node000002" href="$group__SimulacionFunciones.html#ga33f95e636d24d1432f26a036e75abac7" title="Aplica un paso del método de Runge&#45;Kutta de cuarto orden." alt="" coords="267,5,368,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="402,21,368,21,368,15,402,15"/>
+<area shape="rect" id="Node000003" href="$simular_8cpp.html#ae38ee23831a104f63d65512fccb97dea" title="Ejecuta la simulación y guarda los resultados en un archivo." alt="" coords="108,5,219,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="253,21,219,21,219,15,253,15"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Función principal del programa." alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="94,21,60,21,60,15,94,15"/>
+</map>

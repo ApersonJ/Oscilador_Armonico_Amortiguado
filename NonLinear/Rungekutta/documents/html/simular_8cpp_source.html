@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Simulador de Oscilador Amortiguado: Archivo de código fuente src/simular.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Simulador de Oscilador Amortiguado<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Simulación numérica de oscilador armónico con amortiguamiento cuadrático usando Runge-Kutta</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('simular_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">simular.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="simular_8cpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * @file simular.cpp</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * @brief Implementación de las funciones para la simulación del oscilador amortiguado.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Contiene las funciones necesarias para la simulación numérica de un oscilador</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * armónico con amortiguamiento cuadrático, utilizando el método de Runge-Kutta</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * de cuarto orden. Además, incluye funciones para la entrada de datos y el</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * almacenamiento de resultados.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * @author [Jesus Vitola, Nicolas Lopez, Mariana Velandia, Laura Riaño]</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * @date [01/12/2025]</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;../include/funciones.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"></span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> * @brief Solicita al usuario los parámetros iniciales para la simulación.</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> * Pide al usuario que introduzca los valores iniciales de posición, tiempo, velocidad,</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> * masa, constante elástica, coeficiente de amortiguamiento y paso de integración.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> * @param x Referencia a la posición inicial (m).</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"> * @param t Referencia al tiempo inicial (s).</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"> * @param v Referencia a la velocidad inicial (m/s).</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"> * @param m Referencia a la masa del oscilador (Kg).</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"> * @param k Referencia a la constante elástica del resorte (N/m).</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> * @param l Referencia al coeficiente de amortiguamiento (Kg/m).</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> * @param dt Referencia al paso de integración (s).</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__SimulacionFunciones.html#gae2dcc7e4db978c63cf73b9ea248a36a8">   37</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__SimulacionFunciones.html#gae2dcc7e4db978c63cf73b9ea248a36a8">pedirDatos</a>(<span class="keywordtype">double</span> &amp;x, <span class="keywordtype">double</span> &amp;t, <span class="keywordtype">double</span> &amp;v, <span class="keywordtype">double</span> &amp;m, <span class="keywordtype">double</span> &amp;k, <span class="keywordtype">double</span> &amp;l, <span class="keywordtype">double</span> &amp;dt) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    cout &lt;&lt; <span class="stringliteral">&quot;Ingrese el valor inicial de x (m): &quot;</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    cin &gt;&gt; x;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    cout &lt;&lt; <span class="stringliteral">&quot;Ingrese el valor inicial de t (s): &quot;</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    cin &gt;&gt; t;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    cout &lt;&lt; <span class="stringliteral">&quot;Ingrese el valor inicial de v  (m/s): &quot;</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    cin &gt;&gt; v;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    cout &lt;&lt; <span class="stringliteral">&quot;Ingrese el valor de la masa (Kg): &quot;</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    cin &gt;&gt; m;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    cout &lt;&lt; <span class="stringliteral">&quot;Ingrese el valor de k (N/m): &quot;</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    cin &gt;&gt; k;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    cout &lt;&lt; <span class="stringliteral">&quot;Ingrese el valor del coeficiente de amortiguamiento (Kg/m): &quot;</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    cin &gt;&gt; l;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    cout &lt;&lt; <span class="stringliteral">&quot;Ingrese el paso de integracion dt: &quot;</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    cin &gt;&gt; dt;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"></span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"> * @brief Calcula las derivadas del sistema de ecuaciones diferenciales.</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"> * Evalúa las ecuaciones del oscilador amortiguado:</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"> * - dx/dt = v</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"> * - dv/dt = -(k/m)*x - (l/m)*v*|v|</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> * @param dxdt Referencia para almacenar la derivada de la posición (dx/dt).</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"> * @param dvdt Referencia para almacenar la derivada de la velocidad (dv/dt).</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee">   64</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee">funcion</a>(<span class="keywordtype">double</span> x, <span class="keywordtype">double</span> t, <span class="keywordtype">double</span> v, <span class="keywordtype">double</span> m, <span class="keywordtype">double</span> k, <span class="keywordtype">double</span> l, <span class="keywordtype">double</span> &amp;dxdt, <span class="keywordtype">double</span> &amp;dvdt) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    dxdt = v; <span class="comment">///&lt; Derivada de la posición: velocidad.</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    dvdt = (-k/m) * x - (l/m) * v * fabs(v); <span class="comment">///&lt; Derivada de la velocidad: aceleración (fuerza elástica + amortiguamiento cuadrático).</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment"></span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> * @brief Aplica un paso del método de Runge-Kutta de cuarto orden.</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"> * Avanza la solución del sistema de ecuaciones diferenciales un paso de tiempo dt,</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"> * actualizando los valores de posición (x) y velocidad (v).</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="group__SimulacionFunciones.html#ga33f95e636d24d1432f26a036e75abac7">   76</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__SimulacionFunciones.html#ga33f95e636d24d1432f26a036e75abac7">rungeKutta4</a>(<span class="keywordtype">double</span> &amp;x, <span class="keywordtype">double</span> &amp;t, <span class="keywordtype">double</span> &amp;v, <span class="keywordtype">double</span> &amp;m, <span class="keywordtype">double</span> &amp;k, <span class="keywordtype">double</span> &amp;l, <span class="keywordtype">double</span> dt) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">double</span> dx1, dv1, dx2, dv2, dx3, dv3, dx4, dv4; <span class="comment">///&lt; Variables para las evaluaciones intermedias de Runge-Kutta.</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_function" href="group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee">funcion</a>(x, t, v, m , k, l, dx1, dv1); <span class="comment">///&lt; Primera evaluación (k1).</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_function" href="group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee">funcion</a>(x + 0.5 * dt * dx1, t + 0.5 * dt, v + 0.5 * dt * dv1, m , k, l, dx2, dv2); <span class="comment">///&lt; Segunda evaluación (k2).</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_function" href="group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee">funcion</a>(x + 0.5 * dt * dx2, t + 0.5 * dt, v + 0.5 * dt * dv2, m , k, l, dx3, dv3); <span class="comment">///&lt; Tercera evaluación (k3).</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_function" href="group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee">funcion</a>(x + dt * dx3, t + dt, v + dt * dv3, m , k, l, dx4, dv4); <span class="comment">///&lt; Cuarta evaluación (k4).</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment"></span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">    /// Actualización de x y v usando la combinación ponderada de las evaluaciones.</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment"></span>    x += dt * (dx1 + 2 * dx2 + 2 * dx3 + dx4) / 6.0;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    v += dt * (dv1 + 2 * dv2 + 2 * dv3 + dv4) / 6.0;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>}</div>
+</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment"></span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment"> * @brief Ejecuta la simulación y guarda los resultados en un archivo.</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment"> * Realiza la integración numérica desde t0 hasta tmax con paso dt,</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment"> * guardando en un archivo los valores de tiempo, posición, velocidad y momento lineal.</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment"> * Al finalizar, ejecuta un script de gnuplot para graficar los resultados.</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"> * @param archivo Ruta del archivo de salida donde se guardarán los datos.</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"> * @param x0 Posición inicial (m).</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"> * @param t0 Tiempo inicial (s).</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment"> * @param v0 Velocidad inicial (m/s).</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment"> * @param tmax Tiempo máximo de simulación (s).</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="simular_8cpp.html#ae38ee23831a104f63d65512fccb97dea">  102</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="simular_8cpp.html#ae38ee23831a104f63d65512fccb97dea">guardarDatos</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;archivo, <span class="keywordtype">double</span> x0, <span class="keywordtype">double</span> t0, <span class="keywordtype">double</span> v0, <span class="keywordtype">double</span> m, <span class="keywordtype">double</span> k, </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                    <span class="keywordtype">double</span> l, <span class="keywordtype">double</span> dt, <span class="keywordtype">double</span> tmax) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    system(<span class="stringliteral">&quot;mkdir -p ../results&quot;</span>); <span class="comment">///&lt; Crea el directorio de resultados si no existe.</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    ofstream file(archivo);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    file &lt;&lt; fixed &lt;&lt; setprecision(6); <span class="comment">///&lt; Formato de salida: punto fijo con 6 decimales.</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    file &lt;&lt; setw(10) &lt;&lt; <span class="stringliteral">&quot;t&quot;</span> &lt;&lt; setw(15) &lt;&lt; <span class="stringliteral">&quot;x&quot;</span> &lt;&lt; setw(15) &lt;&lt; <span class="stringliteral">&quot;v&quot;</span> &lt;&lt; setw(15) &lt;&lt; <span class="stringliteral">&quot;p&quot;</span> &lt;&lt;endl; <span class="comment">///&lt; Encabezado del archivo.</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">double</span> x = x0; <span class="comment">///&lt; Posición inicial.</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">double</span> v = v0; <span class="comment">///&lt; Velocidad inicial.</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">double</span> p = m * v; <span class="comment">///&lt; Momento lineal inicial (p = m*v).</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"></span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">    /// Bucle de integración temporal.</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment"></span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> t = t0; t &lt;= tmax; t += dt) {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        file &lt;&lt; setw(10) &lt;&lt; t &lt;&lt; setw(15) &lt;&lt; x &lt;&lt; setw(15) &lt;&lt; v &lt;&lt; setw(15) &lt;&lt; p &lt;&lt; endl; <span class="comment">///&lt; Escribe datos en el archivo.</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <a class="code hl_function" href="group__SimulacionFunciones.html#ga33f95e636d24d1432f26a036e75abac7">rungeKutta4</a>(x, t, v, m, k ,l, dt); <span class="comment">///&lt; Avanza un paso de tiempo.</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        p = m * v; <span class="comment">///&lt; Actualiza el momento lineal.</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    file.close(); <span class="comment">///&lt; Cierra el archivo de salida.</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    cout &lt;&lt; <span class="stringliteral">&quot;Datos guardados en: &quot;</span> &lt;&lt; archivo &lt;&lt; endl;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    system (<span class="stringliteral">&quot;gnuplot ../scripts/graficar.gp&quot;</span>); <span class="comment">///&lt; Ejecuta el script de gnuplot para generar gráficas.</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
+</div>
+<div class="ttc" id="agroup__SimulacionFunciones_html_ga33f95e636d24d1432f26a036e75abac7"><div class="ttname"><a href="group__SimulacionFunciones.html#ga33f95e636d24d1432f26a036e75abac7">rungeKutta4</a></div><div class="ttdeci">void rungeKutta4(double &amp;x, double &amp;t, double &amp;v, double &amp;m, double &amp;k, double &amp;l, double dt)</div><div class="ttdoc">Aplica un paso del método de Runge-Kutta de cuarto orden.</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00076">simular.cpp:76</a></div></div>
+<div class="ttc" id="agroup__SimulacionFunciones_html_ga51a227b521347b46ec438fbff27ef9ee"><div class="ttname"><a href="group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee">funcion</a></div><div class="ttdeci">void funcion(double x, double t, double v, double m, double k, double l, double &amp;dxdt, double &amp;dvdt)</div><div class="ttdoc">Calcula las derivadas del sistema de ecuaciones diferenciales.</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00064">simular.cpp:64</a></div></div>
+<div class="ttc" id="agroup__SimulacionFunciones_html_gae2dcc7e4db978c63cf73b9ea248a36a8"><div class="ttname"><a href="group__SimulacionFunciones.html#gae2dcc7e4db978c63cf73b9ea248a36a8">pedirDatos</a></div><div class="ttdeci">void pedirDatos(double &amp;x, double &amp;t, double &amp;v, double &amp;m, double &amp;k, double &amp;l, double &amp;dt)</div><div class="ttdoc">Solicita al usuario los parámetros iniciales para la simulación.</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00037">simular.cpp:37</a></div></div>
+<div class="ttc" id="asimular_8cpp_html_ae38ee23831a104f63d65512fccb97dea"><div class="ttname"><a href="simular_8cpp.html#ae38ee23831a104f63d65512fccb97dea">guardarDatos</a></div><div class="ttdeci">void guardarDatos(const string &amp;archivo, double x0, double t0, double v0, double m, double k, double l, double dt, double tmax)</div><div class="ttdoc">Ejecuta la simulación y guarda los resultados en un archivo.</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00102">simular.cpp:102</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="simular_8cpp.html">simular.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

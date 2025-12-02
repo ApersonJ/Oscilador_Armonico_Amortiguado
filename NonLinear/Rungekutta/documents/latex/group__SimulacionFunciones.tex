@@ -1,0 +1,159 @@
+\doxysection{Funciones de Simulación}
+\hypertarget{group__SimulacionFunciones}{}\label{group__SimulacionFunciones}\index{Funciones de Simulación@{Funciones de Simulación}}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{funcion}} (double x, double t, double v, double m, double k, double l, double \&dxdt, double \&dvdt)
+\begin{DoxyCompactList}\small\item\em Calcula las derivadas del sistema de ecuaciones diferenciales. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_gaeb6bbe876f6175c25f2fe97f1b671c7d}{guardar\+Datos}} (const std\+::string \&archivo, double x0, double t0, double v0, double m, double k, double l, double dt, double tmax)
+\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8}{pedir\+Datos}} (double \&x, double \&t, double \&v, double \&m, double \&k, double \&l, double \&dt)
+\begin{DoxyCompactList}\small\item\em Solicita al usuario los parámetros iniciales para la simulación. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7}{runge\+Kutta4}} (double \&x, double \&t, double \&v, double \&m, double \&k, double \&l, double dt)
+\begin{DoxyCompactList}\small\item\em Aplica un paso del método de Runge-\/\+Kutta de cuarto orden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}\label{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee} 
+\index{Funciones de Simulación@{Funciones de Simulación}!funcion@{funcion}}
+\index{funcion@{funcion}!Funciones de Simulación@{Funciones de Simulación}}
+\doxysubsubsection{\texorpdfstring{funcion()}{funcion()}}
+{\footnotesize\ttfamily void funcion (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{t,  }\item[{double}]{v,  }\item[{double}]{m,  }\item[{double}]{k,  }\item[{double}]{l,  }\item[{double \&}]{dxdt,  }\item[{double \&}]{dvdt }\end{DoxyParamCaption})}
+
+
+
+Calcula las derivadas del sistema de ecuaciones diferenciales. 
+
+Evalúa las ecuaciones del oscilador amortiguado\+:
+\begin{DoxyItemize}
+\item dx/dt = v
+\item dv/dt = -\/(k/m)\texorpdfstring{$\ast$}{*}x -\/ (l/m)\texorpdfstring{$\ast$}{*}v\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}v\texorpdfstring{$\vert$}{|}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em dxdt} & Referencia para almacenar la derivada de la posición (dx/dt). \\
+\hline
+{\em dvdt} & Referencia para almacenar la derivada de la velocidad (dv/dt). \\
+\hline
+\end{DoxyParams}
+\texorpdfstring{$<$}{<} Derivada de la posición\+: velocidad.
+
+\texorpdfstring{$<$}{<} Derivada de la velocidad\+: aceleración (fuerza elástica + amortiguamiento cuadrático).
+
+Definición en la línea \mbox{\hyperlink{simular_8cpp_source_l00064}{64}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Referenciado por \mbox{\hyperlink{simular_8cpp_source_l00076}{runge\+Kutta4()}}.
+
+Gráfico de llamadas a esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__SimulacionFunciones_gaeb6bbe876f6175c25f2fe97f1b671c7d}\label{group__SimulacionFunciones_gaeb6bbe876f6175c25f2fe97f1b671c7d} 
+\index{Funciones de Simulación@{Funciones de Simulación}!guardarDatos@{guardarDatos}}
+\index{guardarDatos@{guardarDatos}!Funciones de Simulación@{Funciones de Simulación}}
+\doxysubsubsection{\texorpdfstring{guardarDatos()}{guardarDatos()}}
+{\footnotesize\ttfamily void guardar\+Datos (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{archivo,  }\item[{double}]{x0,  }\item[{double}]{t0,  }\item[{double}]{v0,  }\item[{double}]{m,  }\item[{double}]{k,  }\item[{double}]{l,  }\item[{double}]{dt,  }\item[{double}]{tmax }\end{DoxyParamCaption})}
+
+\Hypertarget{group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8}\label{group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8} 
+\index{Funciones de Simulación@{Funciones de Simulación}!pedirDatos@{pedirDatos}}
+\index{pedirDatos@{pedirDatos}!Funciones de Simulación@{Funciones de Simulación}}
+\doxysubsubsection{\texorpdfstring{pedirDatos()}{pedirDatos()}}
+{\footnotesize\ttfamily void pedir\+Datos (\begin{DoxyParamCaption}\item[{double \&}]{x,  }\item[{double \&}]{t,  }\item[{double \&}]{v,  }\item[{double \&}]{m,  }\item[{double \&}]{k,  }\item[{double \&}]{l,  }\item[{double \&}]{dt }\end{DoxyParamCaption})}
+
+
+
+Solicita al usuario los parámetros iniciales para la simulación. 
+
+Pide al usuario que introduzca los valores iniciales de posición, tiempo, velocidad, masa, constante elástica, coeficiente de amortiguamiento y paso de integración.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em x} & Referencia a la posición inicial (m). \\
+\hline
+{\em t} & Referencia al tiempo inicial (s). \\
+\hline
+{\em v} & Referencia a la velocidad inicial (m/s). \\
+\hline
+{\em m} & Referencia a la masa del oscilador (Kg). \\
+\hline
+{\em k} & Referencia a la constante elástica del resorte (N/m). \\
+\hline
+{\em l} & Referencia al coeficiente de amortiguamiento (Kg/m). \\
+\hline
+{\em dt} & Referencia al paso de integración (s). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \mbox{\hyperlink{simular_8cpp_source_l00037}{37}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8cpp_source_l00024}{main()}}.
+
+Gráfico de llamadas a esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7}\label{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7} 
+\index{Funciones de Simulación@{Funciones de Simulación}!rungeKutta4@{rungeKutta4}}
+\index{rungeKutta4@{rungeKutta4}!Funciones de Simulación@{Funciones de Simulación}}
+\doxysubsubsection{\texorpdfstring{rungeKutta4()}{rungeKutta4()}}
+{\footnotesize\ttfamily void runge\+Kutta4 (\begin{DoxyParamCaption}\item[{double \&}]{x,  }\item[{double \&}]{t,  }\item[{double \&}]{v,  }\item[{double \&}]{m,  }\item[{double \&}]{k,  }\item[{double \&}]{l,  }\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Aplica un paso del método de Runge-\/\+Kutta de cuarto orden. 
+
+Avanza la solución del sistema de ecuaciones diferenciales un paso de tiempo dt, actualizando los valores de posición (x) y velocidad (v). \texorpdfstring{$<$}{<} Variables para las evaluaciones intermedias de Runge-\/\+Kutta.
+
+\texorpdfstring{$<$}{<} Primera evaluación (k1).
+
+\texorpdfstring{$<$}{<} Segunda evaluación (k2).
+
+\texorpdfstring{$<$}{<} Tercera evaluación (k3).
+
+\texorpdfstring{$<$}{<} Cuarta evaluación (k4).
+
+Actualización de x y v usando la combinación ponderada de las evaluaciones.
+
+Definición en la línea \mbox{\hyperlink{simular_8cpp_source_l00076}{76}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{simular_8cpp_source_l00064}{funcion()}}.
+
+
+
+Referenciado por \mbox{\hyperlink{simular_8cpp_source_l00102}{guardar\+Datos()}}.
+
+Gráfico de llamadas de esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7_icgraph}
+\end{center}
+\end{figure}

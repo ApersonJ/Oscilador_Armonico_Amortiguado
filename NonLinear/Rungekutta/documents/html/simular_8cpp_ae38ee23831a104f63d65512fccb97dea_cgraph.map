@@ -1,0 +1,7 @@
+<map id="guardarDatos" name="guardarDatos">
+<area shape="rect" id="Node000001" title="Ejecuta la simulación y guarda los resultados en un archivo." alt="" coords="5,5,116,31"/>
+<area shape="rect" id="Node000002" href="$group__SimulacionFunciones.html#ga33f95e636d24d1432f26a036e75abac7" title="Aplica un paso del método de Runge&#45;Kutta de cuarto orden." alt="" coords="164,5,265,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,15,150,15,150,21,116,21"/>
+<area shape="rect" id="Node000003" href="$group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee" title="Calcula las derivadas del sistema de ecuaciones diferenciales." alt="" coords="313,5,384,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="266,15,300,15,300,21,266,21"/>
+</map>

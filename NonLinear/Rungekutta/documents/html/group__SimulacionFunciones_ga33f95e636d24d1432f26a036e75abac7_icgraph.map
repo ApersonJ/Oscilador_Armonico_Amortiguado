@@ -1,0 +1,7 @@
+<map id="rungeKutta4" name="rungeKutta4">
+<area shape="rect" id="Node000001" title="Aplica un paso del método de Runge&#45;Kutta de cuarto orden." alt="" coords="267,5,368,31"/>
+<area shape="rect" id="Node000002" href="$simular_8cpp.html#ae38ee23831a104f63d65512fccb97dea" title="Ejecuta la simulación y guarda los resultados en un archivo." alt="" coords="108,5,219,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="253,21,219,21,219,15,253,15"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Función principal del programa." alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,21,60,21,60,15,94,15"/>
+</map>

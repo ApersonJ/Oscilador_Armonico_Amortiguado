@@ -1,0 +1,118 @@
+\doxysection{simular.\+cpp}
+\hypertarget{simular_8cpp_source}{}\label{simular_8cpp_source}\index{src/simular.cpp@{src/simular.cpp}}
+\mbox{\hyperlink{simular_8cpp}{Ir a la documentaciÃ³n de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}../include/funciones.h"{}}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00010}00010\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00011}00011\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00012}00012\ \textcolor{comment}{///\ Tamaño máximo\ permitido\ para\ los\ arreglos\ de\ datos.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00013}\mbox{\hyperlink{simular_8cpp_a755a370812a5c314712719ca48af8261}{00013}}\ \textcolor{comment}{}\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{simular_8cpp_a755a370812a5c314712719ca48af8261}{MAX\_SIZE}}\ =\ 240;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00014}00014\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00015}00015\ \textcolor{comment}{///\ Masa\ usada\ en\ el\ experimento\ (kg).}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00016}\mbox{\hyperlink{simular_8cpp_a9990e99e87d163c58817550b21d35a83}{00016}}\ \textcolor{comment}{}\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{simular_8cpp_a9990e99e87d163c58817550b21d35a83}{m}}\ =\ 0.145;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00017}00017\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00018}00018\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00019}00019\ \textcolor{comment}{\ *\ @brief\ Lee\ un\ archivo\ con\ datos\ de\ tiempo\ y\ posición.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00020}00020\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00021}00021\ \textcolor{comment}{\ *\ Esta\ función abre\ un\ archivo\ de\ texto\ que\ contiene\ pares\ de\ valores}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00022}00022\ \textcolor{comment}{\ *\ correspondientes\ a\ tiempo\ y\ posición, almacenándolos\ en\ los\ arreglos}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00023}00023\ \textcolor{comment}{\ *\ proporcionados.\ Verifica\ que\ el\ archivo\ se\ abra\ correctamente\ y\ que}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00024}00024\ \textcolor{comment}{\ *\ no\ exceda\ el\ número\ máximo\ permitido\ de\ elementos.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00025}00025\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00026}00026\ \textcolor{comment}{\ *\ @param\ nombreArchivo\ Nombre\ del\ archivo\ de\ entrada\ a\ leer.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00027}00027\ \textcolor{comment}{\ *\ @param\ tiempo\ Arreglo\ donde\ se\ almacenarán los\ valores\ de\ tiempo.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00028}00028\ \textcolor{comment}{\ *\ @param\ posicion\ Arreglo\ donde\ se\ almacenarán los\ valores\ de\ posición.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00029}00029\ \textcolor{comment}{\ *\ @return\ int\ Número\ de\ datos\ leídos\ desde\ el\ archivo.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00030}00030\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00031}\mbox{\hyperlink{simular_8cpp_a88c29054fac1e8bab0c9aff9952f1d58}{00031}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{simular_8cpp_a88c29054fac1e8bab0c9aff9952f1d58}{leerArchivo}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&nombreArchivo,\ \textcolor{keywordtype}{double}\ tiempo[],\ \textcolor{keywordtype}{double}\ posicion[])\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00032}00032\ \ \ \ \ ifstream\ archivo(nombreArchivo.c\_str());}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00033}00033\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (!archivo.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ No\ se\ pudo\ abrir\ el\ archivo\ de\ entrada."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00038}00038\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{double}\ t,\ x;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00041}00041\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{while}\ (archivo\ >>\ t\ >>\ x)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ \mbox{\hyperlink{simular_8cpp_a755a370812a5c314712719ca48af8261}{MAX\_SIZE}})\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ El\ archivo\ contiene\ más datos\ de\ los\ permitidos\ por\ el\ tamaño máximo."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ tiempo[i]\ =\ t;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ posicion[i]\ =\ x;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00052}00052\ \ \ \ \ archivo.close();}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00053}00053\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{return}\ i;\ \textcolor{comment}{//\ Devuelve\ el\ número\ de\ datos\ leídos}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00056}00056\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00057}00057\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00058}00058\ \textcolor{comment}{\ *\ @brief\ Calcula\ la\ velocidad\ y\ el\ momentum\ usando\ diferencias\ centradas.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00059}00059\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00060}00060\ \textcolor{comment}{\ *\ Para\ los\ puntos\ internos\ se\ aplica\ la\ fórmula\ de\ derivación centrada,}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00061}00061\ \textcolor{comment}{\ *\ mientras\ que\ en\ los\ extremos\ la\ velocidad\ se\ asigna\ como\ cero,\ ya\ que}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00062}00062\ \textcolor{comment}{\ *\ no\ es\ posible\ calcularla\ sin\ datos\ anteriores\ y\ posteriores.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00063}00063\ \textcolor{comment}{\ *\ Luego\ se\ calcula\ el\ momentum\ multiplicando\ la\ velocidad\ por\ la\ masa.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00064}00064\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00065}00065\ \textcolor{comment}{\ *\ @param\ tiempo\ Arreglo\ con\ los\ valores\ de\ tiempo.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00066}00066\ \textcolor{comment}{\ *\ @param\ posicion\ Arreglo\ con\ los\ valores\ de\ posición.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00067}00067\ \textcolor{comment}{\ *\ @param\ velocidad\ Arreglo\ donde\ se\ almacenarán las\ velocidades\ calculadas.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00068}00068\ \textcolor{comment}{\ *\ @param\ momentum\ Arreglo\ donde\ se\ almacenará el\ momentum\ calculado.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00069}00069\ \textcolor{comment}{\ *\ @param\ n\ Número\ total\ de\ datos.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00070}00070\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00071}\mbox{\hyperlink{simular_8cpp_a6c4337ab076202052bae8a26195dffb2}{00071}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{simular_8cpp_a6c4337ab076202052bae8a26195dffb2}{calcularDerivadas}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ tiempo[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ posicion[],\ \textcolor{keywordtype}{double}\ velocidad[],\ \textcolor{keywordtype}{double}\ momentum[],\ \textcolor{keywordtype}{int}\ n)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >\ 0\ \&\&\ i\ <\ n\ -\/\ 1)\ \{\ \textcolor{comment}{//\ Derivada\ centrada}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ velocidad[i]\ =\ (posicion[i\ +\ 1]\ -\/\ posicion[i\ -\/\ 1])\ /\ (tiempo[i\ +\ 1]\ -\/\ tiempo[i\ -\/\ 1]);}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ velocidad[i]\ =\ 0.0;\ \textcolor{comment}{//\ No\ se\ puede\ calcular\ para\ los\ extremos}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ ++i)\{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ momentum[i]\ =\ velocidad[i]\ *\ \mbox{\hyperlink{simular_8cpp_a9990e99e87d163c58817550b21d35a83}{m}};}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00082}00082\ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00083}00083\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00084}00084\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00085}00085\ \textcolor{comment}{\ *\ @brief\ Genera\ un\ archivo\ de\ salida\ con\ tiempo,\ posición, velocidad\ y\ momentum.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00086}00086\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00087}00087\ \textcolor{comment}{\ *\ Escribe\ un\ archivo\ de\ texto\ con\ encabezados\ y\ cuatro\ columnas\ correspondientes}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00088}00088\ \textcolor{comment}{\ *\ a\ los\ datos\ procesados.\ El\ archivo\ se\ genera\ en\ formato\ tabulado.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00089}00089\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00090}00090\ \textcolor{comment}{\ *\ @param\ archivoSalida\ Nombre\ del\ archivo\ de\ salida\ a\ generar.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00091}00091\ \textcolor{comment}{\ *\ @param\ tiempo\ Arreglo\ con\ los\ valores\ de\ tiempo.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00092}00092\ \textcolor{comment}{\ *\ @param\ posicion\ Arreglo\ con\ los\ valores\ de\ posición.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00093}00093\ \textcolor{comment}{\ *\ @param\ velocidad\ Arreglo\ con\ las\ velocidades\ calculadas.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00094}00094\ \textcolor{comment}{\ *\ @param\ momentum\ Arreglo\ con\ los\ valores\ de\ momentum.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00095}00095\ \textcolor{comment}{\ *\ @param\ n\ Cantidad\ total\ de\ datos\ a\ escribir.}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00096}00096\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00097}\mbox{\hyperlink{simular_8cpp_ab2b43e9c7194073a63eb9cfdafeead7a}{00097}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{simular_8cpp_ab2b43e9c7194073a63eb9cfdafeead7a}{generarArchivoSalida}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&archivoSalida,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ tiempo[],\ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ posicion[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ velocidad[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ momentum[],\ \textcolor{keywordtype}{int}\ n)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00099}00099\ \ \ \ \ ofstream\ archivo(archivoSalida.c\_str());}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (!archivo.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ No\ se\ pudo\ abrir\ el\ archivo\ de\ salida."{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00103}00103\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00104}00104\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00105}00105\ \ \ \ \ archivo\ <<\ \textcolor{stringliteral}{"{}\#\ Tiempo\(\backslash\)tPosicion\(\backslash\)tVelocidad\(\backslash\)tMomentum"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ archivo\ <<\ fixed\ <<\ setprecision(6)\ <<\ tiempo[i]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}\ <<\ posicion[i]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}\ <<\ velocidad[i]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}\ <<\ momentum[i]\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00108}00108\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00109}00109\ \ \ \ \ archivo.close();}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00110}00110\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Archivo\ generado:\ "{}}\ <<\ archivoSalida\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00111}00111\ \}}
+\DoxyCodeLine{\Hypertarget{simular_8cpp_source_l00112}00112\ }
+
+\end{DoxyCode}

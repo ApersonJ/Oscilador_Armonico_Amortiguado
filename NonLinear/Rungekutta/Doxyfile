@@ -1,0 +1,97 @@
+# ------------------------------------------------------------
+# Configuración básica del proyecto
+# ------------------------------------------------------------
+PROJECT_NAME           = "Simulador de Oscilador Amortiguado"
+PROJECT_NUMBER         = 1.0
+PROJECT_BRIEF          = "Simulación numérica de oscilador armónico con amortiguamiento cuadrático usando Runge-Kutta"
+OUTPUT_DIRECTORY       = ./documents
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = Spanish
+ALIASES                = "mathjax{1}=@f{eqnarray*}{1}@f]"
+
+# ------------------------------------------------------------
+# Configuración de archivos de entrada (ESTO ES CLAVE)
+# ------------------------------------------------------------
+INPUT                  = ./src ./include
+FILE_PATTERNS          = *.cpp *.h *.hpp
+RECURSIVE              = YES
+EXCLUDE                = 
+EXCLUDE_PATTERNS       = */.git/* */.svn/*
+EXCLUDE_SYMBOLS        = 
+
+# ------------------------------------------------------------
+# Configuración de extracción
+# ------------------------------------------------------------
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+HIDE_FRIEND_COMPOUNDS  = NO
+HIDE_IN_BODY_DOCS      = NO
+
+# ------------------------------------------------------------
+# Configuración específica para tu modularización
+# ------------------------------------------------------------
+# Esto organizará mejor tu documentación modularizada
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          = *.cpp *.h
+RECURSIVE              = YES
+
+# Para agrupar por módulos
+SUBGROUPING            = YES
+TYPEDEF_HIDES_STRUCT   = YES
+
+# ------------------------------------------------------------
+# Configuración de salida HTML
+# ------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_EXTRA_STYLESHEET  = 
+HTML_EXTRA_FILES       = 
+HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+EXTERNAL_SEARCH        = NO
+SEARCHDATA_FILE        = searchdata.xml
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 250
+
+# ------------------------------------------------------------
+# Configuración para documentar funciones separadas
+# ------------------------------------------------------------
+# Importante para que documente funciones en diferentes archivos .cpp
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = YES
+SORT_MEMBERS_CTORS_1ST = YES
+SORT_GROUP_NAMES       = YES
+SORT_BY_SCOPE_NAME     = YES
+
+# ------------------------------------------------------------
+# Configuración de referencias cruzadas
+# ------------------------------------------------------------
+REFERENCES_LINK_SOURCE = YES
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# ------------------------------------------------------------
+# Configuración de gráficos (opcional pero útil)
+# ------------------------------------------------------------
+HAVE_DOT               = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+GROUP_GRAPHS           = YES
+UML_LOOK               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES

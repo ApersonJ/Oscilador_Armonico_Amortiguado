@@ -1,0 +1,183 @@
+\doxysection{Referencia del archivo src/simular.cpp}
+\hypertarget{simular_8cpp}{}\label{simular_8cpp}\index{src/simular.cpp@{src/simular.cpp}}
+{\ttfamily \#include "{}../include/funciones.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Gr√°fico de dependencias incluidas en simular.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{simular_8cpp_a6c4337ab076202052bae8a26195dffb2}{calcular\+Derivadas}} (const double tiempo\mbox{[}$\,$\mbox{]}, const double posicion\mbox{[}$\,$\mbox{]}, double velocidad\mbox{[}$\,$\mbox{]}, double momentum\mbox{[}$\,$\mbox{]}, int n)
+\begin{DoxyCompactList}\small\item\em Calcula la velocidad y el momentum usando diferencias centradas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{simular_8cpp_ab2b43e9c7194073a63eb9cfdafeead7a}{generar\+Archivo\+Salida}} (const string \&archivo\+Salida, const double tiempo\mbox{[}$\,$\mbox{]}, const double posicion\mbox{[}$\,$\mbox{]}, const double velocidad\mbox{[}$\,$\mbox{]}, const double momentum\mbox{[}$\,$\mbox{]}, int n)
+\begin{DoxyCompactList}\small\item\em Genera un archivo de salida con tiempo, posiciÛn, velocidad y momentum. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{simular_8cpp_a88c29054fac1e8bab0c9aff9952f1d58}{leer\+Archivo}} (const string \&nombre\+Archivo, double tiempo\mbox{[}$\,$\mbox{]}, double posicion\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Lee un archivo con datos de tiempo y posiciÛn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{simular_8cpp_a9990e99e87d163c58817550b21d35a83}{m}} = 0.\+145
+\begin{DoxyCompactList}\small\item\em Masa usada en el experimento (kg). \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{simular_8cpp_a755a370812a5c314712719ca48af8261}{MAX\+\_\+\+SIZE}} = 240
+\begin{DoxyCompactList}\small\item\em TamaÒo m·ximo permitido para los arreglos de datos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentaci√≥n de funciones}
+\Hypertarget{simular_8cpp_a6c4337ab076202052bae8a26195dffb2}\label{simular_8cpp_a6c4337ab076202052bae8a26195dffb2} 
+\index{simular.cpp@{simular.cpp}!calcularDerivadas@{calcularDerivadas}}
+\index{calcularDerivadas@{calcularDerivadas}!simular.cpp@{simular.cpp}}
+\doxysubsubsection{\texorpdfstring{calcularDerivadas()}{calcularDerivadas()}}
+{\footnotesize\ttfamily void calcular\+Derivadas (\begin{DoxyParamCaption}\item[{const double}]{tiempo\mbox{[}$\,$\mbox{]},  }\item[{const double}]{posicion\mbox{[}$\,$\mbox{]},  }\item[{double}]{velocidad\mbox{[}$\,$\mbox{]},  }\item[{double}]{momentum\mbox{[}$\,$\mbox{]},  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Calcula la velocidad y el momentum usando diferencias centradas. 
+
+Para los puntos internos se aplica la fÛrmula de derivaciÛn centrada, mientras que en los extremos la velocidad se asigna como cero, ya que no es posible calcularla sin datos anteriores y posteriores. Luego se calcula el momentum multiplicando la velocidad por la masa.
+
+
+\begin{DoxyParams}{Par√°metros}
+{\em tiempo} & Arreglo con los valores de tiempo. \\
+\hline
+{\em posicion} & Arreglo con los valores de posiciÛn. \\
+\hline
+{\em velocidad} & Arreglo donde se almacenar·n las velocidades calculadas. \\
+\hline
+{\em momentum} & Arreglo donde se almacenar· el momentum calculado. \\
+\hline
+{\em n} & N˙mero total de datos. \\
+\hline
+\end{DoxyParams}
+
+
+Definici√≥n en la l√≠nea \mbox{\hyperlink{simular_8cpp_source_l00071}{71}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{simular_8cpp_source_l00016}{m}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8cpp_source_l00034}{main()}}.
+
+Gr√°fico de llamadas a esta funci√≥n\+:
+% FIG 1
+\Hypertarget{simular_8cpp_ab2b43e9c7194073a63eb9cfdafeead7a}\label{simular_8cpp_ab2b43e9c7194073a63eb9cfdafeead7a} 
+\index{simular.cpp@{simular.cpp}!generarArchivoSalida@{generarArchivoSalida}}
+\index{generarArchivoSalida@{generarArchivoSalida}!simular.cpp@{simular.cpp}}
+\doxysubsubsection{\texorpdfstring{generarArchivoSalida()}{generarArchivoSalida()}}
+{\footnotesize\ttfamily void generar\+Archivo\+Salida (\begin{DoxyParamCaption}\item[{const string \&}]{archivo\+Salida,  }\item[{const double}]{tiempo\mbox{[}$\,$\mbox{]},  }\item[{const double}]{posicion\mbox{[}$\,$\mbox{]},  }\item[{const double}]{velocidad\mbox{[}$\,$\mbox{]},  }\item[{const double}]{momentum\mbox{[}$\,$\mbox{]},  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Genera un archivo de salida con tiempo, posiciÛn, velocidad y momentum. 
+
+Escribe un archivo de texto con encabezados y cuatro columnas correspondientes a los datos procesados. El archivo se genera en formato tabulado.
+
+
+\begin{DoxyParams}{Par√°metros}
+{\em archivo\+Salida} & Nombre del archivo de salida a generar. \\
+\hline
+{\em tiempo} & Arreglo con los valores de tiempo. \\
+\hline
+{\em posicion} & Arreglo con los valores de posiciÛn. \\
+\hline
+{\em velocidad} & Arreglo con las velocidades calculadas. \\
+\hline
+{\em momentum} & Arreglo con los valores de momentum. \\
+\hline
+{\em n} & Cantidad total de datos a escribir. \\
+\hline
+\end{DoxyParams}
+
+
+Definici√≥n en la l√≠nea \mbox{\hyperlink{simular_8cpp_source_l00097}{97}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8cpp_source_l00034}{main()}}.
+
+Gr√°fico de llamadas a esta funci√≥n\+:
+% FIG 2
+\Hypertarget{simular_8cpp_a88c29054fac1e8bab0c9aff9952f1d58}\label{simular_8cpp_a88c29054fac1e8bab0c9aff9952f1d58} 
+\index{simular.cpp@{simular.cpp}!leerArchivo@{leerArchivo}}
+\index{leerArchivo@{leerArchivo}!simular.cpp@{simular.cpp}}
+\doxysubsubsection{\texorpdfstring{leerArchivo()}{leerArchivo()}}
+{\footnotesize\ttfamily int leer\+Archivo (\begin{DoxyParamCaption}\item[{const string \&}]{nombre\+Archivo,  }\item[{double}]{tiempo\mbox{[}$\,$\mbox{]},  }\item[{double}]{posicion\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Lee un archivo con datos de tiempo y posiciÛn. 
+
+Esta funciÛn abre un archivo de texto que contiene pares de valores correspondientes a tiempo y posiciÛn, almacen·ndolos en los arreglos proporcionados. Verifica que el archivo se abra correctamente y que no exceda el n˙mero m·ximo permitido de elementos.
+
+
+\begin{DoxyParams}{Par√°metros}
+{\em nombre\+Archivo} & Nombre del archivo de entrada a leer. \\
+\hline
+{\em tiempo} & Arreglo donde se almacenar·n los valores de tiempo. \\
+\hline
+{\em posicion} & Arreglo donde se almacenar·n los valores de posiciÛn. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int N˙mero de datos leÌdos desde el archivo. 
+\end{DoxyReturn}
+
+
+Definici√≥n en la l√≠nea \mbox{\hyperlink{simular_8cpp_source_l00031}{31}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{simular_8cpp_source_l00013}{MAX\+\_\+\+SIZE}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8cpp_source_l00034}{main()}}.
+
+Gr√°fico de llamadas a esta funci√≥n\+:
+% FIG 3
+
+
+\doxysubsection{Documentaci√≥n de variables}
+\Hypertarget{simular_8cpp_a9990e99e87d163c58817550b21d35a83}\label{simular_8cpp_a9990e99e87d163c58817550b21d35a83} 
+\index{simular.cpp@{simular.cpp}!m@{m}}
+\index{m@{m}!simular.cpp@{simular.cpp}}
+\doxysubsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily const double m = 0.\+145}
+
+
+
+Masa usada en el experimento (kg). 
+
+
+
+Definici√≥n en la l√≠nea \mbox{\hyperlink{simular_8cpp_source_l00016}{16}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Referenciado por \mbox{\hyperlink{simular_8cpp_source_l00071}{calcular\+Derivadas()}}.
+
+\Hypertarget{simular_8cpp_a755a370812a5c314712719ca48af8261}\label{simular_8cpp_a755a370812a5c314712719ca48af8261} 
+\index{simular.cpp@{simular.cpp}!MAX\_SIZE@{MAX\_SIZE}}
+\index{MAX\_SIZE@{MAX\_SIZE}!simular.cpp@{simular.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_SIZE}{MAX\_SIZE}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+SIZE = 240}
+
+
+
+TamaÒo m·ximo permitido para los arreglos de datos. 
+
+
+
+Definici√≥n en la l√≠nea \mbox{\hyperlink{simular_8cpp_source_l00013}{13}} del archivo \mbox{\hyperlink{simular_8cpp_source}{simular.\+cpp}}.
+
+
+
+Referenciado por \mbox{\hyperlink{simular_8cpp_source_l00031}{leer\+Archivo()}}.
+

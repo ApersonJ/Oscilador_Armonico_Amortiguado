@@ -1,0 +1,44 @@
+\doxysection{Referencia del archivo include/funciones.h}
+\hypertarget{funciones_8h}{}\label{funciones_8h}\index{include/funciones.h@{include/funciones.h}}
+
+
+Declaraciones de funciones para la simulación del oscilador.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+Gráfico de dependencias incluidas en funciones.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{funciones_8h__incl}
+\end{center}
+\end{figure}
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{funciones_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee}{funcion}} (double x, double t, double v, double m, double k, double l, double \&dxdt, double \&dvdt)
+\begin{DoxyCompactList}\small\item\em Calcula las derivadas del sistema de ecuaciones diferenciales. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_gaeb6bbe876f6175c25f2fe97f1b671c7d}{guardar\+Datos}} (const std\+::string \&archivo, double x0, double t0, double v0, double m, double k, double l, double dt, double tmax)
+\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8}{pedir\+Datos}} (double \&x, double \&t, double \&v, double \&m, double \&k, double \&l, double \&dt)
+\begin{DoxyCompactList}\small\item\em Solicita al usuario los parámetros iniciales para la simulación. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7}{runge\+Kutta4}} (double \&x, double \&t, double \&v, double \&m, double \&k, double \&l, double dt)
+\begin{DoxyCompactList}\small\item\em Aplica un paso del método de Runge-\/\+Kutta de cuarto orden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Declaraciones de funciones para la simulación del oscilador. 
+
+
+
+Definición en el archivo \mbox{\hyperlink{funciones_8h_source}{funciones.\+h}}.
+

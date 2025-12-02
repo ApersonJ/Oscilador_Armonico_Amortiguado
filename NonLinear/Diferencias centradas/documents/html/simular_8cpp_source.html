@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Simulador de Oscilador Amortiguado: Archivo de cÃ³digo fuente src/simular.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Simulador de Oscilador Amortiguado<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">SimulaciÃ³n numÃ©rica de oscilador armÃ³nico con amortiguamiento cuadrÃ¡tico usando Runge-Kutta</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('simular_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">simular.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="simular_8cpp.html">Ir a la documentaciÃ³n de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;../include/funciones.h&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"></span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">/// Tamaño máximo permitido para los arreglos de datos.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="simular_8cpp.html#a755a370812a5c314712719ca48af8261">   13</a></span><span class="comment"></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="simular_8cpp.html#a755a370812a5c314712719ca48af8261">MAX_SIZE</a> = 240;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"></span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/// Masa usada en el experimento (kg).</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="simular_8cpp.html#a9990e99e87d163c58817550b21d35a83">   16</a></span><span class="comment"></span><span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="simular_8cpp.html#a9990e99e87d163c58817550b21d35a83">m</a> = 0.145;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"></span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * @brief Lee un archivo con datos de tiempo y posición.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * Esta función abre un archivo de texto que contiene pares de valores</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * correspondientes a tiempo y posición, almacenándolos en los arreglos</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * proporcionados. Verifica que el archivo se abra correctamente y que</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> * no exceda el número máximo permitido de elementos.</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> * @param nombreArchivo Nombre del archivo de entrada a leer.</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> * @param tiempo Arreglo donde se almacenarán los valores de tiempo.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> * @param posicion Arreglo donde se almacenarán los valores de posición.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> * @return int Número de datos leídos desde el archivo.</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="simular_8cpp.html#a88c29054fac1e8bab0c9aff9952f1d58">   31</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="simular_8cpp.html#a88c29054fac1e8bab0c9aff9952f1d58">leerArchivo</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;nombreArchivo, <span class="keywordtype">double</span> tiempo[], <span class="keywordtype">double</span> posicion[]) {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    ifstream archivo(nombreArchivo.c_str());</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">if</span> (!archivo.is_open()) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        cerr &lt;&lt; <span class="stringliteral">&quot;Error: No se pudo abrir el archivo de entrada.&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        exit(1);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">double</span> t, x;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">while</span> (archivo &gt;&gt; t &gt;&gt; x) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (i &gt;= <a class="code hl_variable" href="simular_8cpp.html#a755a370812a5c314712719ca48af8261">MAX_SIZE</a>) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            cerr &lt;&lt; <span class="stringliteral">&quot;Error: El archivo contiene más datos de los permitidos por el tamaño máximo.&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            exit(1);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        tiempo[i] = t;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        posicion[i] = x;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        i++;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    archivo.close();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> i; <span class="comment">// Devuelve el número de datos leídos</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"></span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"> * @brief Calcula la velocidad y el momentum usando diferencias centradas.</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> * Para los puntos internos se aplica la fórmula de derivación centrada,</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> * mientras que en los extremos la velocidad se asigna como cero, ya que</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"> * no es posible calcularla sin datos anteriores y posteriores.</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"> * Luego se calcula el momentum multiplicando la velocidad por la masa.</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"> * @param tiempo Arreglo con los valores de tiempo.</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"> * @param posicion Arreglo con los valores de posición.</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment"> * @param velocidad Arreglo donde se almacenarán las velocidades calculadas.</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment"> * @param momentum Arreglo donde se almacenará el momentum calculado.</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment"> * @param n Número total de datos.</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="simular_8cpp.html#a6c4337ab076202052bae8a26195dffb2">   71</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="simular_8cpp.html#a6c4337ab076202052bae8a26195dffb2">calcularDerivadas</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> tiempo[], <span class="keyword">const</span> <span class="keywordtype">double</span> posicion[], <span class="keywordtype">double</span> velocidad[], <span class="keywordtype">double</span> momentum[], <span class="keywordtype">int</span> n) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">if</span> (i &gt; 0 &amp;&amp; i &lt; n - 1) { <span class="comment">// Derivada centrada</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            velocidad[i] = (posicion[i + 1] - posicion[i - 1]) / (tiempo[i + 1] - tiempo[i - 1]);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            velocidad[i] = 0.0; <span class="comment">// No se puede calcular para los extremos</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i){</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        momentum[i] = velocidad[i] * <a class="code hl_variable" href="simular_8cpp.html#a9990e99e87d163c58817550b21d35a83">m</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment"></span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment"> * @brief Genera un archivo de salida con tiempo, posición, velocidad y momentum.</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment"> * Escribe un archivo de texto con encabezados y cuatro columnas correspondientes</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment"> * a los datos procesados. El archivo se genera en formato tabulado.</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment"> * @param archivoSalida Nombre del archivo de salida a generar.</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"> * @param tiempo Arreglo con los valores de tiempo.</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment"> * @param posicion Arreglo con los valores de posición.</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment"> * @param velocidad Arreglo con las velocidades calculadas.</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment"> * @param momentum Arreglo con los valores de momentum.</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment"> * @param n Cantidad total de datos a escribir.</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="simular_8cpp.html#ab2b43e9c7194073a63eb9cfdafeead7a">   97</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="simular_8cpp.html#ab2b43e9c7194073a63eb9cfdafeead7a">generarArchivoSalida</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;archivoSalida, <span class="keyword">const</span> <span class="keywordtype">double</span> tiempo[], </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                          <span class="keyword">const</span> <span class="keywordtype">double</span> posicion[], <span class="keyword">const</span> <span class="keywordtype">double</span> velocidad[], <span class="keyword">const</span> <span class="keywordtype">double</span> momentum[], <span class="keywordtype">int</span> n) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    ofstream archivo(archivoSalida.c_str());</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">if</span> (!archivo.is_open()) {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        cerr &lt;&lt; <span class="stringliteral">&quot;Error: No se pudo abrir el archivo de salida.&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        exit(1);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    archivo &lt;&lt; <span class="stringliteral">&quot;# Tiempo\tPosicion\tVelocidad\tMomentum&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        archivo &lt;&lt; fixed &lt;&lt; setprecision(6) &lt;&lt; tiempo[i] &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span> &lt;&lt; posicion[i] &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span> &lt;&lt; velocidad[i] &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span> &lt;&lt; momentum[i] &lt;&lt; endl;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    archivo.close();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    cout &lt;&lt; <span class="stringliteral">&quot;Archivo generado: &quot;</span> &lt;&lt; archivoSalida &lt;&lt; endl;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="ttc" id="asimular_8cpp_html_a6c4337ab076202052bae8a26195dffb2"><div class="ttname"><a href="simular_8cpp.html#a6c4337ab076202052bae8a26195dffb2">calcularDerivadas</a></div><div class="ttdeci">void calcularDerivadas(const double tiempo[], const double posicion[], double velocidad[], double momentum[], int n)</div><div class="ttdoc">Calcula la velocidad y el momentum usando diferencias centradas.</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00071">simular.cpp:71</a></div></div>
+<div class="ttc" id="asimular_8cpp_html_a755a370812a5c314712719ca48af8261"><div class="ttname"><a href="simular_8cpp.html#a755a370812a5c314712719ca48af8261">MAX_SIZE</a></div><div class="ttdeci">const int MAX_SIZE</div><div class="ttdoc">Tamaño máximo permitido para los arreglos de datos.</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00013">simular.cpp:13</a></div></div>
+<div class="ttc" id="asimular_8cpp_html_a88c29054fac1e8bab0c9aff9952f1d58"><div class="ttname"><a href="simular_8cpp.html#a88c29054fac1e8bab0c9aff9952f1d58">leerArchivo</a></div><div class="ttdeci">int leerArchivo(const string &amp;nombreArchivo, double tiempo[], double posicion[])</div><div class="ttdoc">Lee un archivo con datos de tiempo y posición.</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00031">simular.cpp:31</a></div></div>
+<div class="ttc" id="asimular_8cpp_html_a9990e99e87d163c58817550b21d35a83"><div class="ttname"><a href="simular_8cpp.html#a9990e99e87d163c58817550b21d35a83">m</a></div><div class="ttdeci">const double m</div><div class="ttdoc">Masa usada en el experimento (kg).</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00016">simular.cpp:16</a></div></div>
+<div class="ttc" id="asimular_8cpp_html_ab2b43e9c7194073a63eb9cfdafeead7a"><div class="ttname"><a href="simular_8cpp.html#ab2b43e9c7194073a63eb9cfdafeead7a">generarArchivoSalida</a></div><div class="ttdeci">void generarArchivoSalida(const string &amp;archivoSalida, const double tiempo[], const double posicion[], const double velocidad[], const double momentum[], int n)</div><div class="ttdoc">Genera un archivo de salida con tiempo, posición, velocidad y momentum.</div><div class="ttdef"><b>Definition</b> <a href="simular_8cpp_source.html#l00097">simular.cpp:97</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="simular_8cpp.html">simular.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+\doxysection{Referencia del archivo src/main.cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Programa principal para leer datos experimentales, calcular derivadas y generar resultados.  
+
+
+{\ttfamily \#include "{}../include/funciones.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Gr谩fico de dependencias incluidas en main.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Func髇 principal del programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{main_8cpp_a9990e99e87d163c58817550b21d35a83}{m}} = 0.\+145
+\begin{DoxyCompactList}\small\item\em Masa utilizada en el experimento (kg). \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{main_8cpp_a755a370812a5c314712719ca48af8261}{MAX\+\_\+\+SIZE}} = 240
+\begin{DoxyCompactList}\small\item\em Tama駉 m醲imo permitido para los arreglos de datos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripci贸n detallada}
+Programa principal para leer datos experimentales, calcular derivadas y generar resultados. 
+
+Este programa se encarga de\+:
+\begin{DoxyItemize}
+\item Leer un archivo con datos de tiempo y posici髇.
+\item Calcular velocidad y momentum usando funciones definidas en \doxylink{funciones_8h}{funciones.\+h}.
+\item Guardar los resultados de las derivadas en un archivo de salida.
+\item Graficar los datos obtenidos. 
+\end{DoxyItemize}
+
+Definici贸n en el archivo \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Documentaci贸n de funciones}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Func髇 principal del programa. 
+
+Carga datos desde un archivo, calcula derivadas (velocidad y momentum), genera un archivo de salida con estos resultados y finalmente invoca una funci髇 para graficarlos.
+
+\begin{DoxyReturn}{Devuelve}
+int 0 si el programa finaliza correctamente. 
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<} Ruta del archivo de entrada.
+
+\texorpdfstring{$<$}{<} Ruta del archivo de salida.
+
+\texorpdfstring{$<$}{<} Cantidad de datos le韉os.
+
+Definici贸n en la l铆nea \mbox{\hyperlink{main_8cpp_source_l00034}{34}} del archivo \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{simular_8cpp_source_l00071}{calcular\+Derivadas()}}, \mbox{\hyperlink{simular_8cpp_source_l00097}{generar\+Archivo\+Salida()}}, \mbox{\hyperlink{graficar_8cpp_source_l00042}{graficar\+Datos()}}, \mbox{\hyperlink{simular_8cpp_source_l00031}{leer\+Archivo()}} y \mbox{\hyperlink{main_8cpp_source_l00022}{MAX\+\_\+\+SIZE}}.
+
+Gr谩fico de llamadas de esta funci贸n\+:
+% FIG 1
+
+
+\doxysubsection{Documentaci贸n de variables}
+\Hypertarget{main_8cpp_a9990e99e87d163c58817550b21d35a83}\label{main_8cpp_a9990e99e87d163c58817550b21d35a83} 
+\index{main.cpp@{main.cpp}!m@{m}}
+\index{m@{m}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily const double m = 0.\+145}
+
+
+
+Masa utilizada en el experimento (kg). 
+
+
+
+Definici贸n en la l铆nea \mbox{\hyperlink{main_8cpp_source_l00023}{23}} del archivo \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_a755a370812a5c314712719ca48af8261}\label{main_8cpp_a755a370812a5c314712719ca48af8261} 
+\index{main.cpp@{main.cpp}!MAX\_SIZE@{MAX\_SIZE}}
+\index{MAX\_SIZE@{MAX\_SIZE}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_SIZE}{MAX\_SIZE}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+SIZE = 240}
+
+
+
+Tama駉 m醲imo permitido para los arreglos de datos. 
+
+
+
+Definici贸n en la l铆nea \mbox{\hyperlink{main_8cpp_source_l00022}{22}} del archivo \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8cpp_source_l00034}{main()}}.
+

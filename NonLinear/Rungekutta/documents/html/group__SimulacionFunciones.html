@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Simulador de Oscilador Amortiguado: Funciones de Simulación</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Simulador de Oscilador Amortiguado<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Simulación numérica de oscilador armónico con amortiguamiento cuadrático usando Runge-Kutta</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__SimulacionFunciones.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funciones</a>  </div>
+  <div class="headertitle"><div class="title">Funciones de Simulación</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ga51a227b521347b46ec438fbff27ef9ee" id="r_ga51a227b521347b46ec438fbff27ef9ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SimulacionFunciones.html#ga51a227b521347b46ec438fbff27ef9ee">funcion</a> (double x, double t, double v, double m, double k, double l, double &amp;dxdt, double &amp;dvdt)</td></tr>
+<tr class="memdesc:ga51a227b521347b46ec438fbff27ef9ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula las derivadas del sistema de ecuaciones diferenciales.  <br /></td></tr>
+<tr class="separator:ga51a227b521347b46ec438fbff27ef9ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb6bbe876f6175c25f2fe97f1b671c7d" id="r_gaeb6bbe876f6175c25f2fe97f1b671c7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SimulacionFunciones.html#gaeb6bbe876f6175c25f2fe97f1b671c7d">guardarDatos</a> (const std::string &amp;archivo, double x0, double t0, double v0, double m, double k, double l, double dt, double tmax)</td></tr>
+<tr class="separator:gaeb6bbe876f6175c25f2fe97f1b671c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2dcc7e4db978c63cf73b9ea248a36a8" id="r_gae2dcc7e4db978c63cf73b9ea248a36a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SimulacionFunciones.html#gae2dcc7e4db978c63cf73b9ea248a36a8">pedirDatos</a> (double &amp;x, double &amp;t, double &amp;v, double &amp;m, double &amp;k, double &amp;l, double &amp;dt)</td></tr>
+<tr class="memdesc:gae2dcc7e4db978c63cf73b9ea248a36a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solicita al usuario los parámetros iniciales para la simulación.  <br /></td></tr>
+<tr class="separator:gae2dcc7e4db978c63cf73b9ea248a36a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33f95e636d24d1432f26a036e75abac7" id="r_ga33f95e636d24d1432f26a036e75abac7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SimulacionFunciones.html#ga33f95e636d24d1432f26a036e75abac7">rungeKutta4</a> (double &amp;x, double &amp;t, double &amp;v, double &amp;m, double &amp;k, double &amp;l, double dt)</td></tr>
+<tr class="memdesc:ga33f95e636d24d1432f26a036e75abac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aplica un paso del método de Runge-Kutta de cuarto orden.  <br /></td></tr>
+<tr class="separator:ga33f95e636d24d1432f26a036e75abac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<h2 class="groupheader">Documentación de funciones</h2>
+<a id="ga51a227b521347b46ec438fbff27ef9ee" name="ga51a227b521347b46ec438fbff27ef9ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga51a227b521347b46ec438fbff27ef9ee">&#9670;&#160;</a></span>funcion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void funcion </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>dxdt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>dvdt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcula las derivadas del sistema de ecuaciones diferenciales. </p>
+<p>Evalúa las ecuaciones del oscilador amortiguado:</p><ul>
+<li>dx/dt = v</li>
+<li>dv/dt = -(k/m)*x - (l/m)*v*|v|</li>
+</ul>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dxdt</td><td>Referencia para almacenar la derivada de la posición (dx/dt). </td></tr>
+    <tr><td class="paramname">dvdt</td><td>Referencia para almacenar la derivada de la velocidad (dv/dt). </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>&lt; Derivada de la posición: velocidad.</p>
+<p>&lt; Derivada de la velocidad: aceleración (fuerza elástica + amortiguamiento cuadrático).</p>
+
+<p class="definition">Definición en la línea <a class="el" href="simular_8cpp_source.html#l00064">64</a> del archivo <a class="el" href="simular_8cpp_source.html">simular.cpp</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="simular_8cpp_source.html#l00076">rungeKutta4()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__SimulacionFunciones_ga51a227b521347b46ec438fbff27ef9ee_icgraph.svg" width="492" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gaeb6bbe876f6175c25f2fe97f1b671c7d" name="gaeb6bbe876f6175c25f2fe97f1b671c7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeb6bbe876f6175c25f2fe97f1b671c7d">&#9670;&#160;</a></span>guardarDatos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void guardarDatos </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>archivo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>v0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>tmax</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gae2dcc7e4db978c63cf73b9ea248a36a8" name="gae2dcc7e4db978c63cf73b9ea248a36a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2dcc7e4db978c63cf73b9ea248a36a8">&#9670;&#160;</a></span>pedirDatos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pedirDatos </td>
+          <td>(</td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Solicita al usuario los parámetros iniciales para la simulación. </p>
+<p>Pide al usuario que introduzca los valores iniciales de posición, tiempo, velocidad, masa, constante elástica, coeficiente de amortiguamiento y paso de integración.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Referencia a la posición inicial (m). </td></tr>
+    <tr><td class="paramname">t</td><td>Referencia al tiempo inicial (s). </td></tr>
+    <tr><td class="paramname">v</td><td>Referencia a la velocidad inicial (m/s). </td></tr>
+    <tr><td class="paramname">m</td><td>Referencia a la masa del oscilador (Kg). </td></tr>
+    <tr><td class="paramname">k</td><td>Referencia a la constante elástica del resorte (N/m). </td></tr>
+    <tr><td class="paramname">l</td><td>Referencia al coeficiente de amortiguamiento (Kg/m). </td></tr>
+    <tr><td class="paramname">dt</td><td>Referencia al paso de integración (s). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="simular_8cpp_source.html#l00037">37</a> del archivo <a class="el" href="simular_8cpp_source.html">simular.cpp</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="main_8cpp_source.html#l00024">main()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__SimulacionFunciones_gae2dcc7e4db978c63cf73b9ea248a36a8_icgraph.svg" width="207" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga33f95e636d24d1432f26a036e75abac7" name="ga33f95e636d24d1432f26a036e75abac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga33f95e636d24d1432f26a036e75abac7">&#9670;&#160;</a></span>rungeKutta4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rungeKutta4 </td>
+          <td>(</td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aplica un paso del método de Runge-Kutta de cuarto orden. </p>
+<p>Avanza la solución del sistema de ecuaciones diferenciales un paso de tiempo dt, actualizando los valores de posición (x) y velocidad (v). </p>
+<p>&lt; Variables para las evaluaciones intermedias de Runge-Kutta.</p>
+<p>&lt; Primera evaluación (k1).</p>
+<p>&lt; Segunda evaluación (k2).</p>
+<p>&lt; Tercera evaluación (k3).</p>
+<p>&lt; Cuarta evaluación (k4).</p>
+<p>Actualización de x y v usando la combinación ponderada de las evaluaciones.</p>
+
+<p class="definition">Definición en la línea <a class="el" href="simular_8cpp_source.html#l00076">76</a> del archivo <a class="el" href="simular_8cpp_source.html">simular.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="simular_8cpp_source.html#l00064">funcion()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="simular_8cpp_source.html#l00102">guardarDatos()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7_cgraph.svg" width="231" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__SimulacionFunciones_ga33f95e636d24d1432f26a036e75abac7_icgraph.svg" width="374" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

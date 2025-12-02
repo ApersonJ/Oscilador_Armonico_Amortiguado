@@ -1,3 +1,10 @@
+/**
+ * @file funciones.h
+ * @brief Declaraciones de funciones para la simulación del oscilador
+ * @defgroup SimulacionFunciones Funciones de Simulación
+ * @{
+ */
+
 #ifndef FUNCIONES_H
 #define FUNCIONES_H
 
@@ -10,3 +17,5 @@ void guardarDatos(const std::string &archivo, double x0, double t0, double v0, d
                     double l, double dt, double tmax);
 
 #endif
+
+/** @} */ // fin de SimulacionFunciones
