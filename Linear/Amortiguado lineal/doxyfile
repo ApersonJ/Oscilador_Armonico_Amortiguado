@@ -1,0 +1,115 @@
+# ------------------------------------------------------------
+# Configuración básica del proyecto
+# ------------------------------------------------------------
+PROJECT_NAME           = "Simulador de Oscilador Amortiguado"
+PROJECT_NUMBER         = 1.0
+PROJECT_BRIEF          = "Simulación numérica de oscilador armónico con amortiguamiento cuadrático usando Runge-Kutta"
+OUTPUT_DIRECTORY       = ../documentacion
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = Spanish
+ALIASES                = "mathjax{1}=@f{eqnarray*}{1}@f]"
+
+# ------------------------------------------------------------
+# Configuración de archivos de entrada (ESTO ES CLAVE)
+# ------------------------------------------------------------
+INPUT                  = .
+FILE_PATTERNS          = *.cpp *.h *.hpp
+RECURSIVE              = YES
+EXCLUDE                = 
+EXCLUDE_PATTERNS       = */.git/* */.svn/*
+EXCLUDE_SYMBOLS        = 
+INPUT_ENCODING         = UTF-8
+
+# ------------------------------------------------------------
+# Configuración de extracción
+# ------------------------------------------------------------
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+HIDE_FRIEND_COMPOUNDS  = NO
+HIDE_IN_BODY_DOCS      = NO
+
+# ------------------------------------------------------------
+# Configuración específica para tu modularización
+# ------------------------------------------------------------
+SUBGROUPING            = YES
+TYPEDEF_HIDES_STRUCT   = YES
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = YES
+SORT_MEMBERS_CTORS_1ST = YES
+SORT_GROUP_NAMES       = YES
+SORT_BY_SCOPE_NAME     = YES
+
+# ------------------------------------------------------------
+# Configuración de salida HTML
+# ------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_EXTRA_STYLESHEET  = 
+HTML_EXTRA_FILES       = 
+HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+EXTERNAL_SEARCH        = NO
+SEARCHDATA_FILE        = searchdata.xml
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 250
+
+# ------------------------------------------------------------
+# Configuración de referencias cruzadas
+# ------------------------------------------------------------
+REFERENCES_LINK_SOURCE = YES
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# ------------------------------------------------------------
+# Configuración de gráficos (opcional pero útil)
+# ------------------------------------------------------------
+HAVE_DOT               = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+GROUP_GRAPHS           = YES
+UML_LOOK               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+
+# ------------------------------------------------------------
+# Configuración de advertencias y mensajes
+# ------------------------------------------------------------
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+WARN_FORMAT            = "$file:$line: $text"
+
+# ------------------------------------------------------------
+# Configuración de optimización para C++
+# ------------------------------------------------------------
+OPTIMIZE_OUTPUT_FOR_C  = YES
+OPTIMIZE_OUTPUT_JAVA   = NO
+OPTIMIZE_FOR_FORTRAN   = NO
+MARKDOWN_SUPPORT       = YES
+TOC_INCLUDE_HEADINGS   = 3
+AUTOLINK_SUPPORT       = YES
+
+# ------------------------------------------------------------
+# Configuración de otros formatos (deshabilitados)
+# ------------------------------------------------------------
+GENERATE_LATEX         = NO
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_XML           = NO
